@@ -284,26 +284,36 @@ def generate_data(x):
     # choose which doge image to use
     seed(f)
     g = randint(0, 1000)
-    if g > 250:
+    if g > 500:
         # if random number is 251 - 1000 >> basic
         generate_doge(0, x, head_color, throat_color, eye_white, eye_pupil, snoz_color, background, outline)
         style = "basic"
         wow += 5
+    elif 501 >= g > 250:
+        # 501 - 250 vizor
+        generate_doge(5, x, head_color, throat_color, eye_white, eye_pupil, snoz_color, background, outline)
+        style = "vizor"
+        wow += 10
     elif 250 >= g > 100:
         # 101 - 250 >> cute
         generate_doge(1, x, head_color, throat_color, eye_white, eye_pupil, snoz_color, background, outline)
         style = "cute"
-        wow += 10
+        wow += 15
     elif 100 >= g > 40:
         # 41 - 100 >> angry
         generate_doge(2, x, head_color, throat_color, eye_white, eye_pupil, snoz_color, background, outline)
         style = "angry"
-        wow += 15
+        wow += 20
+    elif 40 >= g > 10:
+        # 40 - 11 >> mobster
+        generate_doge(4, x, head_color, throat_color, eye_white, eye_pupil, snoz_color, background, outline)
+        style = "mobster"
+        wow += 25
     else:
         # else >> glasses
         generate_doge(3, x, head_color, throat_color, eye_white, eye_pupil, snoz_color, background, outline)
         style = "glasses"
-        wow += 25
+        wow += 30
 
     # Write stats to output
     print("\nID: " + str(x) + "\nStyle: " + style + "\nFoil: " + foil + "\nEyes: " + eyes + "\nSnoz: "
