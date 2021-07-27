@@ -170,6 +170,7 @@ def generate_doge(type, id, hd, th, ew, ep, nz, bg, ol):
         ]
     elif type == 5:
         # Vizor doge image
+        gr = (100, 100, 100)
         pixels = [
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg],
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg],
@@ -178,10 +179,10 @@ def generate_doge(type, id, hd, th, ew, ep, nz, bg, ol):
             [bg, bg, bg, bg, bg, bg, ol, th, th, th, ol, ol, ol, ol, ol, th, th, th, ol, bg, bg, bg, bg, bg],
             [bg, bg, bg, bg, bg, ol, th, th, th, hd, hd, hd, hd, hd, hd, hd, hd, hd, ol, bg, bg, bg, bg, bg],
             [bg, bg, bg, bg, bg, ol, th, th, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, ol, bg, bg, bg, bg],
-            [bg, bg, bg, bg, bg, ol, th, hd, hd, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, bg, bg, bg],
-            [bg, bg, bg, bg, ol, hd, hd, hd, ep, ew, ew, ew, ew, ew, ew, ew, ew, ew, ew, ew, ew, ep, bg, bg],
-            [bg, bg, bg, bg, ol, hd, hd, hd, ep, ew, ew, ew, ew, ew, ew, ew, ew, ew, ew, ew, ew, ep, bg, bg],
-            [bg, bg, bg, ol, hd, hd, hd, hd, hd, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, bg, bg, bg],
+            [bg, bg, bg, bg, bg, ol, th, hd, hd, gr, gr, gr, gr, gr, gr, gr, gr, gr, gr, gr, gr, bg, bg, bg],
+            [bg, bg, bg, bg, ol, hd, hd, hd, gr, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, gr, bg, bg],
+            [bg, bg, bg, bg, ol, hd, hd, hd, gr, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, gr, bg, bg],
+            [bg, bg, bg, ol, hd, hd, hd, hd, hd, gr, gr, gr, gr, gr, gr, gr, gr, gr, gr, gr, gr, bg, bg, bg],
             [bg, bg, bg, ol, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, ol, bg, bg, bg],
             [bg, bg, ol, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, nz, nz, nz, hd, ol, bg, bg],
             [bg, bg, ol, hd, hd, hd, hd, hd, th, th, th, th, th, hd, hd, hd, hd, nz, nz, nz, th, ol, bg, bg],
@@ -290,9 +291,9 @@ def generate_data(x):
         style = "basic"
         wow += 5
     elif 501 >= g > 250:
-        # 501 - 250 vizor
-        generate_doge(5, x, head_color, throat_color, eye_white, eye_pupil, snoz_color, background, outline)
-        style = "vizor"
+        # 501 - 250 mobster
+        generate_doge(4, x, head_color, throat_color, eye_white, eye_pupil, snoz_color, background, outline)
+        style = "mobster"
         wow += 10
     elif 250 >= g > 100:
         # 101 - 250 >> cute
@@ -305,9 +306,9 @@ def generate_data(x):
         style = "angry"
         wow += 20
     elif 40 >= g > 10:
-        # 40 - 11 >> mobster
-        generate_doge(4, x, head_color, throat_color, eye_white, eye_pupil, snoz_color, background, outline)
-        style = "mobster"
+        # 40 - 11 >> vizor
+        generate_doge(5, x, head_color, throat_color, eye_white, eye_pupil, snoz_color, background, outline)
+        style = "vizor"
         wow += 25
     else:
         # else >> glasses
