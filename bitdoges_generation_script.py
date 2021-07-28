@@ -26,9 +26,9 @@ doge_data_out.write("ID,Style,Eyes,Snoz,Foil,Wow,Coat,Undercoat\n")
 
 
 # Generates and saves each doge image
-def generate_doge(type, id, hd, th, ew, ep, nz, bg, ol):
+def generate_doge(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol):
     print("generating funny doge picture")
-    if type == 0:
+    if doge_type == 0:
         # Basic Doge image
         pixels = [
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg],
@@ -56,7 +56,7 @@ def generate_doge(type, id, hd, th, ew, ep, nz, bg, ol):
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg],
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg]
         ]
-    elif type == 1:
+    elif doge_type == 1:
         # Cutie Doge image
         pixels = [
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg],
@@ -84,7 +84,7 @@ def generate_doge(type, id, hd, th, ew, ep, nz, bg, ol):
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg],
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg]
         ]
-    elif type == 2:
+    elif doge_type == 2:
         # Angry Doge image
         pixels = [
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg],
@@ -112,7 +112,7 @@ def generate_doge(type, id, hd, th, ew, ep, nz, bg, ol):
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg],
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg]
         ]
-    elif type == 3:
+    elif doge_type == 3:
         # Coool Doge image
         pixels = [
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg],
@@ -140,8 +140,8 @@ def generate_doge(type, id, hd, th, ew, ep, nz, bg, ol):
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg],
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg]
         ]
-    elif type == 4:
-        # Mobster Doge image
+    elif doge_type == 4:
+        # Fedora Doge image
         pixels = [
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg],
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, ol, ol, ol, bg, bg, bg, bg, bg, bg, bg, bg],
@@ -168,7 +168,7 @@ def generate_doge(type, id, hd, th, ew, ep, nz, bg, ol):
             [bg, bg, bg, bg, ol, ol, ol, ol, ol, ol, ol, ol, ol, ol, ol, ol, ol, ol, ol, bg, bg, bg, bg, bg],
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg]
         ]
-    elif type == 5:
+    elif doge_type == 5:
         # Vizor doge image
         gr = (100, 100, 100)
         pixels = [
@@ -197,6 +197,34 @@ def generate_doge(type, id, hd, th, ew, ep, nz, bg, ol):
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg],
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg]
         ]
+    elif doge_type == 6:
+        # beanie doge image
+        pixels = [
+            [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg],
+            [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, ol, ol, ol, ol, ol, ol, bg, bg, bg, bg, bg, bg, bg, bg],
+            [bg, bg, bg, bg, bg, bg, bg, ol, ol, ol, hd, hd, hd, hd, hd, hd, ol, ol, bg, bg, bg, bg, bg, bg],
+            [bg, bg, bg, bg, bg, ol, ol, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, ol, bg, bg, bg, bg, bg],
+            [bg, bg, bg, bg, ol, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, ol, bg, bg, bg, bg],
+            [bg, bg, bg, ol, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, ol, bg, bg, bg],
+            [bg, bg, bg, ol, hd, hd, hd, hd, hd, hd, hd, hd, th, th, th, th, th, th, th, th, th, ol, bg, bg],
+            [bg, bg, bg, ol, hd, hd, hd, hd, th, th, th, th, th, th, th, th, th, th, th, th, th, ol, bg, bg],
+            [bg, bg, ol, hd, hd, hd, th, th, th, th, th, th, th, ol, ol, ol, ol, ol, ol, ol, ol, bg, bg, bg],
+            [bg, bg, ol, hd, th, th, th, th, th, ol, ol, ol, ol, hd, hd, hd, hd, ew, ew, ew, hd, ol, bg, bg],
+            [bg, bg, ol, th, th, th, th, ol, ol, hd, hd, ew, ew, ew, hd, hd, hd, ew, ep, ep, hd, ol, bg, bg],
+            [bg, ol, th, th, th, ol, ol, hd, hd, hd, hd, ew, ep, ep, hd, hd, hd, hd, hd, hd, hd, ol, bg, bg],
+            [bg, ol, th, th, ol, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, nz, nz, nz, hd, ol, bg],
+            [bg, ol, th, ol, hd, hd, hd, hd, th, th, th, th, th, th, hd, hd, hd, hd, nz, nz, nz, th, ol, bg],
+            [bg, bg, ol, hd, hd, hd, hd, th, th, th, th, th, th, th, th, th, hd, hd, nz, nz, nz, th, ol, bg],
+            [bg, bg, ol, hd, hd, hd, hd, th, th, th, th, th, th, th, th, th, th, th, th, nz, th, th, ol, bg],
+            [bg, bg, ol, hd, hd, hd, hd, th, th, th, th, th, th, th, th, th, nz, nz, nz, th, th, th, ol, bg],
+            [bg, bg, ol, hd, hd, hd, hd, th, th, th, th, th, th, th, nz, nz, th, th, th, th, th, ol, bg, bg],
+            [bg, bg, bg, ol, hd, hd, hd, hd, th, th, th, th, th, th, th, th, th, th, th, th, th, ol, bg, bg],
+            [bg, bg, bg, ol, hd, hd, hd, hd, th, th, th, th, th, th, th, th, th, th, th, th, ol, bg, bg, bg],
+            [bg, bg, bg, bg, ol, hd, hd, hd, hd, th, th, th, th, th, th, th, th, th, th, ol, bg, bg, bg, bg],
+            [bg, bg, bg, bg, bg, ol, ol, ol, ol, ol, ol, ol, ol, ol, ol, ol, ol, ol, ol, bg, bg, bg, bg, bg],
+            [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg],
+            [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg]
+        ]
 
     # convert the pixels into an array using numpy
     array = np.array(pixels, dtype=np.uint8)
@@ -204,14 +232,14 @@ def generate_doge(type, id, hd, th, ew, ep, nz, bg, ol):
     # use PIL to create an image from the new array of pixels
     new_image = Image.fromarray(array)
     new_image = new_image.resize(dimensions, resample=0)
-    imgname = dirname + '/doge_images/' + (str(id)) + '.png'
+    imgname = dirname + '/doge_images/' + (str(doge_id)) + '.png'
     new_image.save(imgname)
 
 
 def generate_data(x):
     # this seed gives classic as #1
-    b = 641616287
-    seed(x+b)
+    s = 641616287
+    seed(x+s)
     wow = 0
 
     # head color - randomly generate each number in an RGB color
@@ -225,12 +253,18 @@ def generate_data(x):
     seed(d)
 
     # eye color
-    # if random number between 1-1000 is 47 or less - gilded eyes
-    if d > 47:
+    # if random number between 1-1000 is 50 or less - gilded eyes
+    if d > 100:
         # normal eyes are always the same color
         eye_white = (240, 248, 255)
         eye_pupil = (10, 10, 10)
         eyes = "normal"
+    elif 100 >= d > 50:
+        # silver eyes are always the same color
+        eye_white = (240, 248, 255)
+        eye_pupil = (152, 152, 152)
+        eyes = "silvered"
+        wow += 10
     else:
         # gilded eyes have the same golden pupil and a random 'eye white' color
         eye_white = (randint(0, 256), randint(0, 256), randint(0, 256))
@@ -242,22 +276,17 @@ def generate_data(x):
 
     # nose color
     f = randint(0, 1000)
-    if f > 500:
+    if f > 100:
         # if random number is 501-1000 >> black nose
         snoz_color = (0, 0, 0)
         snoz = "normal"
-    elif 500 >= f > 47:
+    elif 100 >= f > 50:
         # 48-500 >> silver nose
         snoz_color = (152, 152, 152)
         snoz = "silvered"
-        wow += 5
-    elif 47 >= f > 7:
-        # 8 >> 47 >> red nose
-        snoz_color = (204, 0, 0)
-        snoz = "shiny"
         wow += 10
     else:
-        # random number is 7 or less >> gold nose
+        # random number is 50 or less >> gold nose
         snoz_color = (204, 172, 0)
         snoz = "gilded"
         wow += 15
@@ -266,12 +295,8 @@ def generate_data(x):
     if snoz == "gilded" or eyes == "gilded" or x == 1 or x == 13 or x == 69 or x == 420:
         foil = "holo"
         background = (204, 172, 0)
-        wow += 15
-    elif snoz == "shiny":
-        foil = "pink"
-        background = (219, 49, 190)
         wow += 10
-    elif snoz == "silvered":
+    elif snoz == "silvered" or eyes == "silvered":
         foil = "silver"
         background = (162, 162, 162)
         wow += 5
@@ -291,30 +316,35 @@ def generate_data(x):
         style = "basic"
         wow += 5
     elif 501 >= g > 250:
-        # 501 - 250 mobster
+        # 501 - 250 fedora
         generate_doge(4, x, head_color, throat_color, eye_white, eye_pupil, snoz_color, background, outline)
-        style = "mobster"
+        style = "fedora"
         wow += 10
     elif 250 >= g > 100:
         # 101 - 250 >> cute
         generate_doge(1, x, head_color, throat_color, eye_white, eye_pupil, snoz_color, background, outline)
         style = "cute"
         wow += 15
-    elif 100 >= g > 40:
-        # 41 - 100 >> angry
+    elif 100 >= g > 50:
+        # 51 - 100 >> angry
         generate_doge(2, x, head_color, throat_color, eye_white, eye_pupil, snoz_color, background, outline)
         style = "angry"
         wow += 20
-    elif 40 >= g > 10:
-        # 40 - 11 >> vizor
+    elif 50 >= g > 25:
+        # 50 - 25 >> vizor
         generate_doge(5, x, head_color, throat_color, eye_white, eye_pupil, snoz_color, background, outline)
         style = "vizor"
         wow += 25
+    elif 25 >= g > 10:
+        # 11 - 25 >> beanie
+        generate_doge(6, x, head_color, throat_color, eye_white, eye_pupil, snoz_color, background, outline)
+        style = "beanie"
+        wow += 30
     else:
         # else >> glasses
         generate_doge(3, x, head_color, throat_color, eye_white, eye_pupil, snoz_color, background, outline)
         style = "glasses"
-        wow += 30
+        wow += 35
 
     # Write stats to output
     print("\nID: " + str(x) + "\nStyle: " + style + "\nFoil: " + foil + "\nEyes: " + eyes + "\nSnoz: "
@@ -332,7 +362,7 @@ if __name__ == '__main__':
     # Make -gen doges
     generate_doge(4, -1, (247, 117, 256), (237, 191, 136), (204, 172, 0),
                   (219, 49, 190), (204, 172, 0), (204, 172, 0), (0, 0, 0))
-    doge_data_out.write("-1,mob,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
+    doge_data_out.write("-1,fedora,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
     generate_doge(2, -2, (247, 117, 256), (237, 191, 136), (204, 172, 0),
                   (219, 49, 190), (204, 172, 0), (204, 172, 0), (0, 0, 0))
     doge_data_out.write("-2,angery,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
@@ -342,6 +372,12 @@ if __name__ == '__main__':
     generate_doge(5, -4, (247, 117, 256), (237, 191, 136), (204, 172, 0),
                   (219, 49, 190), (204, 172, 0), (204, 172, 0), (0, 0, 0))
     doge_data_out.write("-4,vizor,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
+    generate_doge(6, -5, (247, 117, 256), (237, 191, 136), (204, 172, 0),
+                  (219, 49, 190), (204, 172, 0), (204, 172, 0), (0, 0, 0))
+    doge_data_out.write("-5,beanie,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
+    generate_doge(0, -6, (247, 117, 256), (237, 191, 136), (204, 172, 0),
+                  (219, 49, 190), (204, 172, 0), (204, 172, 0), (0, 0, 0))
+    doge_data_out.write("-6,normal,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
     # Generation 1 Doge Generation
     # Generate 420 doges starting from 1
     for entry in range(1, 421):
