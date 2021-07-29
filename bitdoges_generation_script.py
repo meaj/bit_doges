@@ -142,7 +142,7 @@ def generate_doge(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol):
         ]
     elif doge_type == 4:
         # Vizor Doge image
-        gr = (100, 100, 100)
+        gr = (105, 105, 105)
         pixels = [
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg],
             [bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg, bg],
@@ -208,10 +208,10 @@ def generate_doge(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol):
             [bg, bg, bg, bg, bg, ol, th, th, th, hd, hd, hd, hd, hd, hd, hd, hd, hd, ol, bg, bg, bg, bg, bg],
             [bg, bg, bg, bg, bg, ol, th, th, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, ol, bg, bg, bg, bg],
             [bg, bg, bg, bg, bg, ol, th, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, ol, bg, bg, bg, bg],
-            [bg, bg, bg, bg, ol, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, ol, bg, bg, bg, bg],
-            [bg, bg, bg, bg, ol, hd, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, ol, bg, bg, bg],
-            [bg, bg, bg, ol, hd, ep, hd, hd, hd, hd, ep, ew, ew, ep, hd, hd, ep, ew, ew, ep, ol, bg, bg, bg],
-            [bg, bg, bg, ol, ep, hd, hd, hd, hd, hd, hd, ep, ep, hd, hd, hd, hd, ep, ep, hd, ol, bg, bg, bg],
+            [bg, bg, bg, bg, ol, hd, hd, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, ep, ol, bg, bg, bg],
+            [bg, bg, bg, bg, ol, hd, ep, hd, hd, hd, ep, ew, ew, ep, hd, hd, ep, ew, ew, ep, ol, bg, bg, bg],
+            [bg, bg, bg, ol, hd, ep, hd, hd, hd, hd, hd, ep, ep, hd, hd, hd, hd, ep, ep, hd, ol, bg, bg, bg],
+            [bg, bg, bg, ol, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, ol, bg, bg, bg],
             [bg, bg, ol, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, hd, nz, nz, nz, hd, ol, bg, bg],
             [bg, bg, ol, hd, hd, hd, hd, hd, th, th, th, th, th, hd, hd, hd, hd, nz, nz, nz, th, ol, bg, bg],
             [bg, bg, ol, hd, hd, hd, hd, th, th, th, th, th, th, th, th, hd, hd, nz, nz, nz, th, ol, bg, bg],
@@ -257,18 +257,18 @@ def generate_data(x):
     if d > 100:
         # normal eyes are always the same color
         eye_white = (240, 248, 255)
-        eye_pupil = (10, 10, 10)
+        eye_pupil = (0, 0, 0)
         eyes = "normal"
     elif 100 >= d > 50:
         # silver eyes are always the same color
         eye_white = (240, 248, 255)
-        eye_pupil = (152, 152, 152)
+        eye_pupil = (192, 192, 192)
         eyes = "silvered"
         wow += 10
     else:
         # gilded eyes have the same golden pupil and a random 'eye white' color
         eye_white = (randint(0, 256), randint(0, 256), randint(0, 256))
-        eye_pupil = (204, 172, 0)
+        eye_pupil = (184, 134, 11)
         eyes = "gilded"
         wow += 15
     e = randint(0, 1000)
@@ -282,23 +282,23 @@ def generate_data(x):
         snoz = "normal"
     elif 500 >= f > 50:
         # 48-500 >> silver nose
-        snoz_color = (152, 152, 152)
+        snoz_color = (192, 192, 192)
         snoz = "silvered"
         wow += 10
     else:
         # random number is 50 or less >> gold nose
-        snoz_color = (204, 172, 0)
+        snoz_color = (184, 134, 11)
         snoz = "gilded"
         wow += 15
 
     # background color
     if snoz == "gilded" or eyes == "gilded" or x == 1 or x == 13 or x == 69 or x == 420:
         foil = "holo"
-        background = (204, 172, 0)
+        background = (184, 134, 11)
         wow += 10
     elif snoz == "silvered" or eyes == "silvered":
         foil = "silver"
-        background = (162, 162, 162)
+        background = (192, 192, 192)
         wow += 5
     else:
         foil = "none"
@@ -357,38 +357,43 @@ def generate_data(x):
 if __name__ == '__main__':
     # Make negative gen doges
     # TODO: change ultra foil to have purple background
-    generate_doge(6, -1, (247, 117, 256), (237, 191, 136), (204, 172, 0),
-                  (219, 49, 190), (204, 172, 0), (204, 172, 0), (0, 0, 0))
+    generate_doge(6, -1, (247, 117, 256), (237, 191, 136), (184, 134, 11),
+                  (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0))
     doge_data_out.write("-1,glasses,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
 
-    generate_doge(5, -2, (247, 117, 256), (237, 191, 136), (204, 172, 0),
-                  (219, 49, 190), (204, 172, 0), (204, 172, 0), (0, 0, 0))
+    generate_doge(5, -2, (247, 117, 256), (237, 191, 136), (184, 134, 11),
+                  (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0))
     doge_data_out.write("-2,fedora,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
 
-    generate_doge(4, -3, (247, 117, 256), (237, 191, 136), (204, 172, 0),
-                  (219, 49, 190), (204, 172, 0), (204, 172, 0), (0, 0, 0))
+    generate_doge(4, -3, (247, 117, 256), (237, 191, 136), (184, 134, 11),
+                  (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0))
     doge_data_out.write("-3,vizor,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
 
-    generate_doge(3, -4, (247, 117, 256), (237, 191, 136), (204, 172, 0),
-                  (219, 49, 190), (204, 172, 0), (204, 172, 0), (0, 0, 0))
+    generate_doge(3, -4, (247, 117, 256), (237, 191, 136), (184, 134 ,11),
+                  (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0))
     doge_data_out.write("-4,beanie,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
 
-    generate_doge(2, -5, (247, 117, 256), (237, 191, 136), (204, 172, 0),
-                  (219, 49, 190), (204, 172, 0), (204, 172, 0), (0, 0, 0))
+    generate_doge(2, -5, (247, 117, 256), (237, 191, 136), (184, 134, 11),
+                  (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0))
     doge_data_out.write("-5,angry,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
 
-    generate_doge(1, -6, (247, 117, 256), (237, 191, 136), (204, 172, 0),
-                  (219, 49, 190), (204, 172, 0), (204, 172, 0), (0, 0, 0))
+    generate_doge(1, -6, (247, 117, 256), (237, 191, 136), (184, 134, 11),
+                  (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0))
     doge_data_out.write("-6,cutie,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
 
-    generate_doge(0, -7, (247, 117, 256), (237, 191, 136), (204, 172, 0),
-                  (219, 49, 190), (204, 172, 0), (204, 172, 0), (0, 0, 0))
+    generate_doge(0, -7, (247, 117, 256), (237, 191, 136), (184, 134, 11),
+                  (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0))
     doge_data_out.write("-7,normal,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
 
     # Generation 1 Doge Generation
     # Generate 419 doges starting from 1
     for entry in range(1, 420):
         generate_data(entry)
-    # TODO: Generate doge 420 which has gilded nose and eyes and glasses but random colors with ultra background
+    # Generate doge 420 which has gilded nose and eyes and glasses but random colors with ultra background
+    hd420 = (randint(0, 256), randint(0, 256), randint(0, 256))
+    th420 = (randint(0, 256), randint(0, 256), randint(0, 256))
+    ew420 = (randint(0, 256), randint(0, 256), randint(0, 256))
+    generate_doge(6, 420, hd420, th420, ew420, (184, 134, 11), (184, 134, 11), (128, 0, 128), (0, 0, 0))
+    doge_data_out.write("420,glasses,gilded,gilded,ultra,420,\"" + str(hd420) + "\",\"" + str(th420) + "\"\n")
 
     doge_data_out.close()
