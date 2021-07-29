@@ -13,6 +13,7 @@ import os
 # library to generate random integer values
 from random import seed
 from random import randint
+from random import shuffle
 
 # gets path to be used in image creation mechanism, using os
 dirname = os.path.dirname(__file__)
@@ -23,6 +24,24 @@ dimensions = 512, 512
 # open fh to generation_0_data.csv
 doge_data_out = open(dirname + '\\doge_data\\generation_0_data.csv', "w")
 doge_data_out.write("ID,Style,Eyes,Snoz,Foil,Wow,Coat,Undercoat\n")
+
+# Array of 69 (nice) colors that are used to create the doges. Each color may only be selected once for each colorable
+color_array = [(139, 0, 0), (178, 34, 34), (255, 0, 0), (255, 127, 80), (205, 92, 92), (233, 150, 122), (250, 128, 114),
+               (255, 69, 0), (255, 165, 0), (255, 215, 0), (240, 230, 140), (128, 128, 0), (255, 255, 0),
+               (154, 205, 50), (85, 107, 47), (107, 142, 35), (127, 255, 0), (173, 255, 47), (0, 100, 0), (34, 139, 34),
+               (0, 255, 0), (50, 205, 50), (152, 251, 152), (0, 255, 127), (46, 139, 87), (60, 179, 113),
+               (32, 178, 170), (0, 139, 139), (0, 255, 255), (0, 206, 209), (127, 255, 212), (95, 158, 160),
+               (70, 130, 180), (100, 149, 237), (0, 191, 255), (30, 144, 255), (135, 206, 250), (0, 0, 205),
+               (0, 0, 255), (65, 105, 225), (138, 43, 226), (75, 0, 130), (123, 104, 238), (148, 0, 211),
+               (186, 85, 211), (221, 160, 221), (238, 130, 238), (255, 0, 255), (218, 112, 214), (219, 112, 147),
+               (255, 105, 180), (255, 192, 203), (250, 235, 215), (255, 228, 196), (139, 69, 19), (160, 82, 45),
+               (210, 105, 30), (205, 133, 63), (244, 164, 96), (255, 228, 181), (237,  191,  136), (245, 255, 250),
+               (119, 136, 153), (240, 255, 240), (255, 255, 240), (240, 255, 255), (255, 250, 250), (128, 128, 128)]
+
+head_pool = color_array.copy()
+throat_pool = color_array.copy()
+used_colors = []
+eye_pool = color_array.copy()
 
 
 # Generates and saves each doge image
@@ -242,15 +261,30 @@ def generate_data(x):
     seed(x+s)
     wow = 0
 
-    # head color - randomly generate each number in an RGB color
-    head_color = (randint(0, 256), randint(0, 256), randint(0, 256))
+    # Shuffle head color pool and reseed function
+    shuffle(head_pool)
     c = randint(0, 500)
     seed(c)
 
-    # throat color - same as head color
-    throat_color = (randint(0, 256), randint(0, 256), randint(0, 256))
+    # Shuffle head color pool and reseed function
+    shuffle(throat_pool)
     d = randint(0, 1000)
     seed(d)
+
+    # loop through different color combinations until we get a unique one
+    # should allow for only unique color combinations though efficiency is not great
+    cont = True
+    while cont:
+        shuffle(head_pool)
+        shuffle(throat_pool)
+        head_color = head_pool[-1]
+        throat_color = throat_pool[-1]
+        color_choice = [head_color, throat_color]
+        if color_choice not in used_colors and head_color != throat_color:
+            cont = False
+
+    # add the chosen color to the pool of used colors
+    used_colors.append(color_choice)
 
     # eye color
     # if random number between 1-1000 is 50 or less - gilded eyes
@@ -266,8 +300,13 @@ def generate_data(x):
         eyes = "silvered"
         wow += 10
     else:
-        # gilded eyes have the same golden pupil and a random 'eye white' color
-        eye_white = (randint(0, 256), randint(0, 256), randint(0, 256))
+        # gilded eyes have the same golden pupil and a random 'eye white' color that must be different from the head
+        eye_white = None
+        while not eye_white:
+            shuffle(eye_pool)
+            if eye_pool[-1] != head_color:
+                eye_white = eye_pool.pop()
+        print(str(eye_white))
         eye_pupil = (184, 134, 11)
         eyes = "gilded"
         wow += 15
@@ -302,7 +341,7 @@ def generate_data(x):
         wow += 5
     else:
         foil = "none"
-        background = (242, 242, 242)
+        background = (245, 245, 245)
 
     # outline color
     outline = (0, 0, 0)
@@ -385,9 +424,12 @@ if __name__ == '__main__':
                   (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0))
     doge_data_out.write("-7,normal,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
 
+    generate_doge(0, 1, (247, 117, 256), (237, 191, 136), (240, 248, 255),
+                  (0, 0, 0), (0, 0, 0), (128, 0, 128), (0, 0, 0))
+    doge_data_out.write("1,normal,normal,normal,ultra,4200,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
     # Generation 1 Doge Generation
-    # Generate 419 doges starting from 1
-    for entry in range(1, 420):
+    # Generate 419 doges starting from 2
+    for entry in range(2, 420):
         generate_data(entry)
     # Generate doge 420 which has gilded nose and eyes and glasses but random colors with ultra background
     hd420 = (randint(0, 256), randint(0, 256), randint(0, 256))
