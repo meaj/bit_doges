@@ -23,44 +23,9 @@ dimensions = 512, 512
 doge_data_out = open(dirname + '\\doge_data\\generation_0_data.csv', "w")
 doge_data_out.write("ID,Name,Style,Eyes,Snoz,Foil,Wow,Coat,Undercoat\n")
 
-# Array of doge names
-names = ["BILLIAM", "MAX", "CHARLIE", "COCO", "ROCKY", "LOLA", "LUCY", "LUCKY", "BUDDY", "DAISY", "PRINCESS", "BAILEY",
-         "MOLLY", "TEDDY", "CHLOE", "TOBY", "LUNA", "JACK", "MAGGIE", "OREO", "SOPHIE", "LILY", "OLIVER", "MILO",
-         "GIZMO", "LADY", "GINGER", "MIA", "PENNY", "LULU", "RUBY", "COOPER", "COOKIE", "PRINCE", "STELLA", "LEO",
-         "SASHA", "CODY", "RILEY", "ROXY", "JAKE", "SHADOW", "BUSTER", "SADIE", "BABY", "OSCAR", "BEAR", "ZOE", "ROSIE",
-         "SAMMY", "ZOEY", "BRUNO", "HENRY", "SANDY", "PEPPER", "DUKE", "SPARKY", "BLUE", "DEXTER", "GRACIE", "KING",
-         "ANGEL", "BENTLEY", "RUSTY", "SAM", "HONEY", "REX", "ROMEO", "BROOKLYN", "ZEUS", "PEANUT", "MICKEY", "LOUIE",
-         "BENJI", "BROWNIE", "DIAMOND", "ROCCO", "WINSTON", "SCOUT", "HARLEY", "FRANKIE", "EMMA", "MISSY", "JASPER",
-         "SIMBA", "LEXI", "TYSON", "JACKSON", "LAYLA", "QUINCY", "MAXIMUS", "MADISON", "GEORGE", "LILLY", "MURPHY",
-         "NALA", "PRECIOUS", "TUCKER", "JOEY", "OLIVE", "MARLEY", "MAYA", "HUDSON", "GIGI", "GUS", "ABBY", "BANDIT",
-         "FLUFFY", "JAX", "CASEY", "CHESTER", "BAXTER", "SPIKE", "MIMI", "PEBBLES", "DIESEL", "MINNIE", "BENNY",
-         "ELLIE", "ELLA", "MOCHA", "CHICO", "ACE", "HUNTER", "CHEWY", "HARRY", "HAZEL", "ROXIE", "BELLE", "HOLLY",
-         "NINA", "REMY", "SAMANTHA", "PHOEBE", "FOXY", "SUGAR", "OTIS", "ZIGGY", "NENA", "ELVIS", "HAPPY", "RUFUS",
-         "BRANDY", "COCOA", "OLLIE", "ARCHIE", "CHASE", "PETEY", "TIGER", "DAKOTA", "HERSHEY", "RUDY", "SAMSON",
-         "TRIXIE", "LUKE", "PENELOPE", "SMOKEY", "SUNNY", "CHANCE", "LOKI", "GUCCI", "SNOWBALL", "APOLLO", "BISCUIT",
-         "MILLIE", "CHAMP", "COSMO", "PARKER", "ANNIE", "BOOMER", "BRUCE", "KIKI", "CASPER", "JACKIE", "ROSCOE",
-         "SCOOBY", "SONNY", "JUNIOR", "PIPER", "THOR", "MISTY", "BOBBY", "DIXIE", "WINNIE", "WILLOW", "BOSCO",
-         "MUFFIN", "NIKKI", "ONYX", "SHEBA", "FIONA", "LUCAS", "BONNIE", "LITTLE", "LOGAN", "NIKO", "KATIE", "MADDIE",
-         "SIMON", "SOPHIA", "KOBE", "IZZY", "MAXWELL", "SIR", "STAR", "BETTY", "DINO", "BOO", "JESSIE", "MIKEY", "HANK",
-         "NICO", "PATCHES", "MASON", "SKY", "SPANKY", "STORM", "CLEO", "LEXIE", "LUCA", "MONTY", "BEAU", "MIDNIGHT",
-         "OTTO", "CALLIE", "PARIS", "RAMBO", "SNOW", "WALLY", "CHARLEY", "DOLLY", "OZZY", "TINY", "AMBER", "ISABELLA",
-         "YOGI", "BARNEY", "BRADY", "CHELSEA", "XENA", "BRODY", "HERCULES", "MILES", "SCRAPPY", "TAZ", "KLAUS",
-         "CASSIE", "FRED", "JOJO", "PEACHES", "RICKY", "SPENCER", "DELILAH", "HUGO", "CHANEL", "CINNAMON", "DYLAN",
-         "LOUIS", "MOCHI", "OLIVIA", "SHEA", "JASMINE", "WALTER", "AVA", "BO", "MOOSE", "SEBASTIAN", "WILLIE", "BEBE",
-         "BRUTUS", "DUSTY", "FINN", "SALLY", "ANDY", "CHEWIE", "PUMPKIN", "CASH", "CHARLOTTE", "DANTE", "ELI", "JOSIE",
-         "SASSY", "ALFIE", "BAMBI", "EDDIE", "KOKO", "MABEL", "POLO", "CHIP", "JESSE", "SHELBY", "WATSON", "BLU",
-         "DIVA", "ERNIE", "MISS", "MUGSY", "PEPE", "TANK", "TONY", "ATHENA", "LACEY", "SKIPPY", "BACI", "BOBO",
-         "CHOCOLATE", "DIEGO", "SYDNEY", "BENJAMIN", "ENZO", "GUINNESS", "JERRY", "JIMMY", "JUNO", "REGGIE", "SCRUFFY",
-         "STANLEY", "TIFFANY", "TOMMY", "ALEX", "BLACKIE", "CLYDE", "FRANK", "GOLDIE", "HEIDI", "OZZIE", "CALI",
-         "CINDY", "GRACE", "LILA", "TINA", "YOSHI", "BARKLEY", "BEN", "BUBBA", "GIA", "MATILDA", "PACO", "TOOTSIE",
-         "VIOLET", "APRIL", "DOLCE", "DUNCAN", "HOPE", "JETER", "NEMO", "NINO", "RANGER", "SCOOTER", "SNOWY", "KELLY",
-         "RICO", "SHAGGY", "SNICKERS", "TACO", "BIANCA", "BUFFY", "BUTTERCUP", "DUCHESS", "LEILA", "MOMO", "THEO",
-         "BAM", "BLAZE", "BUTTONS", "GEORGIA", "HARVEY", "LINDA", "MAC", "PANDA", "SUMMER", "SUSIE", "BOWIE", "DALLAS",
-         "HANNAH", "JADE", "KODA", "MACK", "NICKY", "PINKY", "SHILOH", "SOFIA", "THEODORE", "BERNIE", "CAESAR", "CANDY",
-         "DASH", "MACHO", "MILA", "NAPOLEON", "RALPH", "RED", "TOTO", "CAPTAIN", "FRANKLIN", "GYPSY", "IVY", "KIRBY",
-         "PEARL", "BIGGIE", "BUTTER", "CHARLES", "FRITZ", "MOOKIE", "MURRAY", "POPPY", "SHORTY", "STEWIE", "SUKI",
-         "TITAN", "TROUBLE", "AMY", "BUBBLES", "DOMINO", "FREDDIE", "JADA", "JAY", "LINUS", "KHLOE", "RASCAL",
-         "ROCKET", "TALLULAH", "HULK", "ZELDA", "CUPCAKE", "DUTCH", "KHLOE", "SNOOP"]
+# read in the names of all the doges
+doge_names_in = open("doge_data/names.txt", "r")
+names = doge_names_in.read().splitlines()
 
 # Array of 69 (nice) colors that are used to create the doges
 color_array = [(139, 0, 0), (178, 34, 34), (255, 0, 0), (255, 127, 80), (205, 92, 92), (233, 150, 122), (250, 128, 114),
@@ -74,7 +39,7 @@ color_array = [(139, 0, 0), (178, 34, 34), (255, 0, 0), (255, 127, 80), (205, 92
                (255, 105, 180), (255, 192, 203), (250, 235, 215), (255, 228, 196), (139, 69, 19), (160, 82, 45),
                (210, 105, 30), (205, 133, 63), (244, 164, 96), (255, 228, 181), (237,  191,  136), (245, 255, 250),
                (119, 136, 153), (240, 255, 240), (255, 255, 240), (240, 255, 255), (255, 250, 250), (128, 128, 128)]
-# Arrays used to ensure uniqe doge colors are chosen
+# Arrays used to ensure unique doge colors are chosen
 head_pool = color_array.copy()
 throat_pool = color_array.copy()
 used_colors = []
@@ -292,7 +257,7 @@ def generate_doge(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
     new_image.save(imgname)
 
 
-def generate_data(x):
+def generate_data(x, name):
     # this seed gives classic as #1
     s = 641616287
     seed(x+s)
@@ -424,7 +389,6 @@ def generate_data(x):
         wow += 35
 
     # forge the doge
-    name = names.pop()
     generate_doge(doge_style, x, head_color, throat_color, eye_white, eye_pupil, snoz_color, background, outline, name)
 
     # Write stats to output
@@ -435,58 +399,51 @@ def generate_data(x):
                         + "," + str(wow) + ",\"" + str(head_color) + "\",\"" + str(throat_color) + "\"\n")
 
 
+def doge_factory(id):
+    name = names[id]
+    if id == 0:
+        generate_doge(6, 0, (247, 117, 256), (237, 191, 136), (184, 134, 11),
+                      (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
+        doge_data_out.write("0," + name + ",glasses,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
+    elif id == 1:
+        generate_doge(5, 1, (247, 117, 256), (237, 191, 136), (184, 134, 11),
+                      (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
+        doge_data_out.write("1," + name + ",fedora,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
+    elif id == 2:
+        generate_doge(4, 2, (247, 117, 256), (237, 191, 136), (184, 134, 11),
+                      (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
+        doge_data_out.write("2," + name + ",vizor,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
+    elif id == 3:
+        generate_doge(3, 3, (247, 117, 256), (237, 191, 136), (184, 134, 11),
+                      (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
+        doge_data_out.write("3," + name + ",beanie,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
+    elif id == 4:
+        generate_doge(2, 4, (247, 117, 256), (237, 191, 136), (184, 134, 11),
+                      (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
+        doge_data_out.write("4," + name + ",angry,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
+    elif id == 5:
+        generate_doge(1, 5, (247, 117, 256), (237, 191, 136), (184, 134, 11),
+                      (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
+        doge_data_out.write("5," + name + ",cutie,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
+    elif id == 6:
+        generate_doge(0, 6, (247, 117, 256), (237, 191, 136), (184, 134, 11),
+                      (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
+        doge_data_out.write("6," + name + ",normal,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
+    elif id == 7:
+        generate_doge(0, 7, (247, 117, 256), (237, 191, 136), (240, 248, 255),
+                      (0, 0, 0), (0, 0, 0), (128, 0, 128), (0, 0, 0), name)
+        doge_data_out.write("7," + name + ",normal,normal,normal,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
+    elif id == 420:
+        generate_doge(6, 420, (45, 232, 6), (111, 160, 140), (128, 0, 128), (184, 134, 11), (184, 134, 11),
+                      (128, 0, 128), (0, 0, 0), name)
+        doge_data_out.write("420," + name + ",glasses,gilded,gilded,ultra,420,\"(45, 232, 6)\",\"(111, 160, 140)\"\n")
+    else:
+        generate_data(id, name)
+
+
 if __name__ == '__main__':
-    names.reverse()
-    # Make ultra doges
-    name = names.pop()
-    generate_doge(6, -1, (247, 117, 256), (237, 191, 136), (184, 134, 11),
-                  (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-    doge_data_out.write("-1," + name + ",glasses,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
-
-    name = names.pop()
-    generate_doge(5, -2, (247, 117, 256), (237, 191, 136), (184, 134, 11),
-                  (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-    doge_data_out.write("-2," + name + ",fedora,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
-
-    name = names.pop()
-    generate_doge(4, -3, (247, 117, 256), (237, 191, 136), (184, 134, 11),
-                  (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-    doge_data_out.write("-3," + name + ",vizor,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
-
-    name = names.pop()
-    generate_doge(3, -4, (247, 117, 256), (237, 191, 136), (184, 134 ,11),
-                  (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-    doge_data_out.write("-4," + name + ",beanie,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
-
-    name = names.pop()
-    generate_doge(2, -5, (247, 117, 256), (237, 191, 136), (184, 134, 11),
-                  (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-    doge_data_out.write("-5," + name + ",angry,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
-
-    name = names.pop()
-    generate_doge(1, -6, (247, 117, 256), (237, 191, 136), (184, 134, 11),
-                  (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-    doge_data_out.write("-6," + name + ",cutie,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
-
-    name = names.pop()
-    generate_doge(0, -7, (247, 117, 256), (237, 191, 136), (184, 134, 11),
-                  (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-    doge_data_out.write("-7," + name + ",normal,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
-
-    name = names.pop()
-    generate_doge(0, 0, (247, 117, 256), (237, 191, 136), (240, 248, 255),
-                  (0, 0, 0), (0, 0, 0), (128, 0, 128), (0, 0, 0), name)
-    doge_data_out.write("0," + name + ",normal,normal,normal,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
     # Generation 1 Doge Generation
-    # Generate 419 doges starting from 1
-    for entry in range(1, 420):
-        generate_data(entry)
-    # Generate doge 420 which has gilded nose and eyes and glasses but random colors with ultra background
-    name = names.pop()
-    hd420 = (randint(0, 256), randint(0, 256), randint(0, 256))
-    th420 = (randint(0, 256), randint(0, 256), randint(0, 256))
-    ew420 = (randint(0, 256), randint(0, 256), randint(0, 256))
-    generate_doge(6, 420, hd420, th420, ew420, (184, 134, 11), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-    doge_data_out.write("420," + name + ",glasses,gilded,gilded,ultra,420,\"" + str(hd420) + "\",\"" + str(th420) + "\"\n")
-
+    # Generate 500 doges starting from 0
+    for entry in range(0, 500):
+        doge_factory(entry)
     doge_data_out.close()

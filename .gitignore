@@ -1,5 +1,5 @@
 TODO.txt
-*.png
-*.csv
+doge_images/
+doge_data/
 .idea/*
 examples/*
