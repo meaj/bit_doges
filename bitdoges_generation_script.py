@@ -62,7 +62,7 @@ names = ["BILLIAM", "MAX", "CHARLIE", "COCO", "ROCKY", "LOLA", "LUCY", "LUCKY", 
          "TITAN", "TROUBLE", "AMY", "BUBBLES", "DOMINO", "FREDDIE", "JADA", "JAY", "LINUS", "KHLOE", "RASCAL",
          "ROCKET", "TALLULAH", "HULK", "ZELDA", "CUPCAKE", "DUTCH", "KHLOE", "SNOOP"]
 
-# Array of 69 (nice) colors that are used to create the doges. Each color may only be selected once for each colorable
+# Array of 69 (nice) colors that are used to create the doges
 color_array = [(139, 0, 0), (178, 34, 34), (255, 0, 0), (255, 127, 80), (205, 92, 92), (233, 150, 122), (250, 128, 114),
                (255, 69, 0), (255, 165, 0), (255, 215, 0), (240, 230, 140), (128, 128, 0), (255, 255, 0),
                (154, 205, 50), (85, 107, 47), (107, 142, 35), (127, 255, 0), (173, 255, 47), (0, 100, 0), (34, 139, 34),
@@ -74,7 +74,7 @@ color_array = [(139, 0, 0), (178, 34, 34), (255, 0, 0), (255, 127, 80), (205, 92
                (255, 105, 180), (255, 192, 203), (250, 235, 215), (255, 228, 196), (139, 69, 19), (160, 82, 45),
                (210, 105, 30), (205, 133, 63), (244, 164, 96), (255, 228, 181), (237,  191,  136), (245, 255, 250),
                (119, 136, 153), (240, 255, 240), (255, 255, 240), (240, 255, 255), (255, 250, 250), (128, 128, 128)]
-
+# Arrays used to ensure uniqe doge colors are chosen
 head_pool = color_array.copy()
 throat_pool = color_array.copy()
 used_colors = []
@@ -288,7 +288,7 @@ def generate_doge(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
     # use PIL to create an image from the new array of pixels
     new_image = Image.fromarray(array)
     new_image = new_image.resize(dimensions, resample=0)
-    imgname = dirname + '/doge_images/' + (str(doge_id)) + "-" + name + '.png'
+    imgname = dirname + '/doge_images/' + (str(doge_id)) + '.png'
     new_image.save(imgname)
 
 
@@ -437,7 +437,7 @@ def generate_data(x):
 
 if __name__ == '__main__':
     names.reverse()
-    # Make negative gen doges
+    # Make ultra doges
     name = names.pop()
     generate_doge(6, -1, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                   (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
