@@ -13,6 +13,9 @@ import os
 # library to generate random integer values
 from random import seed, randint, shuffle
 
+# used to get a birthdate timestamp
+import time
+
 # gets path to be used in image creation mechanism, using os
 dirname = os.path.dirname(__file__)
 
@@ -21,7 +24,7 @@ dimensions = 512, 512
 
 # open fh to generation_0_data.csv
 doge_data_out = open(dirname + '\\doge_data\\generation_0_data.csv', "w")
-doge_data_out.write("ID,Name,Style,Eyes,Snoz,Foil,Wow,Coat,Undercoat\n")
+doge_data_out.write("ID,Name,Style,Eyes,Snoz,Foil,Wow,Coat,Undercoat,Birthday\n")
 
 # read in the names of all the doges
 doge_names_in = open(dirname + "\\config\\names.txt", "r")
@@ -395,8 +398,9 @@ def generate_data(x, name):
     print("\nID: " + str(x) + "\nStyle: " + style + "\nFoil: " + foil + "\nEyes: " + eyes + "\nSnoz: "
           + snoz + "\nCoat: " + str(head_color) + "\nUndercoat: " + str(throat_color) + "\nTotal wow: " + str(wow))
     # Write Metadata to file
-    doge_data_out.write(str(x) + "," + name + "," + style + "," + eyes + "," + snoz + "," + foil
-                        + "," + str(wow) + ",\"" + str(head_color) + "\",\"" + str(throat_color) + "\"\n")
+    doge_data_out.write(
+        str(x) + "," + name + "," + style + "," + eyes + "," + snoz + "," + foil + "," + str(wow) + ",\"" +
+        str(head_color) + "\",\"" + str(throat_color) + "\"," + str(int(time.time())) + "\n")
 
 
 def doge_factory(id):
@@ -404,39 +408,48 @@ def doge_factory(id):
     if id == 0:
         generate_doge(6, 0, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-        doge_data_out.write("0," + name + ",glasses,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
+        doge_data_out.write("0," + name + ",glasses,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\","
+                            + str(int(time.time())) + "\n")
     elif id == 1:
         generate_doge(5, 1, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-        doge_data_out.write("1," + name + ",fedora,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
+        doge_data_out.write("1," + name + ",fedora,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\","
+                            + str(int(time.time())) + "\n")
     elif id == 2:
         generate_doge(4, 2, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-        doge_data_out.write("2," + name + ",vizor,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
+        doge_data_out.write("2," + name + ",vizor,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\","
+                            + str(int(time.time())) + "\n")
     elif id == 3:
         generate_doge(3, 3, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-        doge_data_out.write("3," + name + ",beanie,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
+        doge_data_out.write("3," + name + ",beanie,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\","
+                            + str(int(time.time())) + "\n")
     elif id == 4:
         generate_doge(2, 4, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-        doge_data_out.write("4," + name + ",angry,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
+        doge_data_out.write("4," + name + ",angry,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\","
+                            + str(int(time.time())) + "\n")
     elif id == 5:
         generate_doge(1, 5, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-        doge_data_out.write("5," + name + ",cutie,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
+        doge_data_out.write("5," + name + ",cutie,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\","
+                            + str(int(time.time())) + "\n")
     elif id == 6:
         generate_doge(0, 6, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-        doge_data_out.write("6," + name + ",normal,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
+        doge_data_out.write("6," + name + ",normal,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\","
+                            + str(int(time.time())) + "\n")
     elif id == 7:
         generate_doge(0, 7, (247, 117, 256), (237, 191, 136), (240, 248, 255),
                       (0, 0, 0), (0, 0, 0), (128, 0, 128), (0, 0, 0), name)
-        doge_data_out.write("7," + name + ",normal,normal,normal,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\"\n")
+        doge_data_out.write("7," + name + ",normal,normal,normal,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\","
+                            + str(int(time.time())) + "\n")
     elif id == 420:
         generate_doge(6, 420, (45, 232, 6), (111, 160, 140), (128, 0, 128), (184, 134, 11), (184, 134, 11),
                       (128, 0, 128), (0, 0, 0), name)
-        doge_data_out.write("420," + name + ",glasses,gilded,gilded,ultra,420,\"(45, 232, 6)\",\"(111, 160, 140)\"\n")
+        doge_data_out.write("420," + name + ",glasses,gilded,gilded,ultra,420,\"(45, 232, 6)\",\"(111, 160, 140)\","
+                            + str(int(time.time())) + "\n")
     else:
         generate_data(id, name)
 
