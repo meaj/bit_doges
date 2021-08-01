@@ -24,7 +24,7 @@ doge_data_out = open(dirname + '\\doge_data\\generation_0_data.csv', "w")
 doge_data_out.write("ID,Name,Style,Eyes,Snoz,Foil,Wow,Coat,Undercoat\n")
 
 # read in the names of all the doges
-doge_names_in = open("doge_data/names.txt", "r")
+doge_names_in = open(dirname + "\\config\\names.txt", "r")
 names = doge_names_in.read().splitlines()
 
 # Array of 69 (nice) colors that are used to create the doges
@@ -253,7 +253,7 @@ def generate_doge(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
     # use PIL to create an image from the new array of pixels
     new_image = Image.fromarray(array)
     new_image = new_image.resize(dimensions, resample=0)
-    imgname = dirname + '/doge_images/' + (str(doge_id)) + '.png'
+    imgname = dirname + '/doge_data/doge_images/' + (str(doge_id)) + '.png'
     new_image.save(imgname)
 
 
