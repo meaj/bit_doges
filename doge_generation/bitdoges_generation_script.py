@@ -16,15 +16,14 @@ from random import seed, randint, shuffle
 # used to get a birthdate timestamp
 import time
 
+import json_template
+import json
+
 # gets path to be used in image creation mechanism, using os
 dirname = os.path.dirname(__file__)
 
 # sets final image dimensions as 512x512 pixels after expansion from 24x24
 dimensions = 512, 512
-
-# open fh to generation_0_data.csv
-doge_data_out = open(dirname + '\\doge_data\\generation_0_data.csv', "w")
-doge_data_out.write("ID,Name,Style,Eyes,Snoz,Foil,Wow,Coat,Undercoat,Birthday\n")
 
 # read in the names of all the doges
 doge_names_in = open(dirname + "\\config\\names.txt", "r")
@@ -47,6 +46,27 @@ head_pool = color_array.copy()
 throat_pool = color_array.copy()
 used_colors = []
 eye_pool = color_array.copy()
+
+
+def generate_metadata (doge_id, doge_type, name, eye_type, snoz_type, foil_type, gen, wow_value, bd_time, addr):
+    doge_metadata = json_template.doge_metadata_template
+    metadata_out = dirname + '\\doge_data\\doge_json\\' + doge_id + '.json'
+    print("Generating metadata for funny doge picture")
+    doge_metadata["name"] = name
+    doge_metadata["external_url"] = "https:\\\\bitdoges.com\\" + str(doge_id)
+    doge_metadata["image"] = dirname + "\\doge_data\\doge_images\\" + doge_id + ".png"
+    doge_metadata["attributes"] = [
+        {"trait_type": "Type", "value": doge_type},
+        {"trait_type": "Eyes", "value": eye_type},
+        {"trait_type": "Snoz", "value": snoz_type},
+        {"trait_type": "Foil", "value": foil_type},
+        {"display_type": "number", "trait_type": "Generaton", "value": gen},
+        {"display_type": "number", "trait_type": "WOW", "value": wow_value},
+        {"display_type": "date", "trait_type": "birthday", "value": bd_time},
+        {"display_type": "string", "trait_type:": "Minter Doge Address", "value": addr}
+    ]
+    with open(metadata_out, "w") as file:
+        json.dump(doge_metadata, file)
 
 
 # Generates and saves each doge image
@@ -260,7 +280,7 @@ def generate_doge(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
     new_image.save(imgname)
 
 
-def generate_data(x, name):
+def generate_data(x, name, gen):
     # this seed gives classic as #1
     s = 641616287
     seed(x+s)
@@ -398,65 +418,55 @@ def generate_data(x, name):
     print("\nID: " + str(x) + "\nStyle: " + style + "\nFoil: " + foil + "\nEyes: " + eyes + "\nSnoz: "
           + snoz + "\nCoat: " + str(head_color) + "\nUndercoat: " + str(throat_color) + "\nTotal wow: " + str(wow))
     # Write Metadata to file
-    doge_data_out.write(
-        str(x) + "," + name + "," + style + "," + eyes + "," + snoz + "," + foil + "," + str(wow) + ",\"" +
-        str(head_color) + "\",\"" + str(throat_color) + "\"," + str(int(time.time())) + "\n")
+    generate_metadata(str(x), style, name, eyes, snoz, foil, gen, str(wow), str(int(time.time())), "")
 
 
-def doge_factory(id):
-    name = names[id]
-    if id == 0:
+def doge_factory(token_id, generation):
+    name = names[token_id]
+    if token_id == 0:
         generate_doge(6, 0, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-        doge_data_out.write("0," + name + ",glasses,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\","
-                            + str(int(time.time())) + "\n")
-    elif id == 1:
+        generate_metadata("0", "glasses", name, "pink", "gilded", "ultra", str(generation), "420", str(int(time.time())), "")
+    elif token_id == 1:
         generate_doge(5, 1, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-        doge_data_out.write("1," + name + ",fedora,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\","
-                            + str(int(time.time())) + "\n")
-    elif id == 2:
+        generate_metadata("1", "fedora", name, "pink", "gilded", "ultra", str(generation), "420", str(int(time.time())), "")
+    elif token_id == 2:
         generate_doge(4, 2, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-        doge_data_out.write("2," + name + ",vizor,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\","
-                            + str(int(time.time())) + "\n")
-    elif id == 3:
+        generate_metadata("2", "vizor", name, "pink", "gilded", "ultra", str(generation), "420", str(int(time.time())), "")
+    elif token_id == 3:
         generate_doge(3, 3, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-        doge_data_out.write("3," + name + ",beanie,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\","
-                            + str(int(time.time())) + "\n")
-    elif id == 4:
+        generate_metadata("3", "beanie", name, "pink", "gilded", "ultra", str(generation), "420", str(int(time.time())), "")
+    elif token_id == 4:
         generate_doge(2, 4, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-        doge_data_out.write("4," + name + ",angry,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\","
-                            + str(int(time.time())) + "\n")
-    elif id == 5:
+        generate_metadata("4", "angry", name, "pink", "gilded", "ultra", str(generation), "420", str(int(time.time())), "")
+    elif token_id == 5:
         generate_doge(1, 5, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-        doge_data_out.write("5," + name + ",cutie,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\","
-                            + str(int(time.time())) + "\n")
-    elif id == 6:
+        generate_metadata("5", "cutie", name, "pink", "gilded", "ultra", str(generation), "420", str(int(time.time())), "")
+    elif token_id == 6:
         generate_doge(0, 6, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (0, 0, 0), name)
-        doge_data_out.write("6," + name + ",normal,pink,gilded,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\","
-                            + str(int(time.time())) + "\n")
-    elif id == 7:
+        generate_metadata("6", "normal", name, "pink", "gilded", "ultra", str(generation), "420", str(int(time.time())), "")
+    elif token_id == 7:
         generate_doge(0, 7, (247, 117, 256), (237, 191, 136), (240, 248, 255),
                       (0, 0, 0), (0, 0, 0), (128, 0, 128), (0, 0, 0), name)
-        doge_data_out.write("7," + name + ",normal,normal,normal,ultra,420,\"(247, 117, 256)\",\"(237, 191, 136)\","
-                            + str(int(time.time())) + "\n")
-    elif id == 420:
+        generate_metadata("7", "normal", name, "normal", "normal", "ultra", str(generation), "420", str(int(time.time())), "")
+    elif token_id == 420:
         generate_doge(6, 420, (45, 232, 6), (111, 160, 140), (128, 0, 128), (184, 134, 11), (184, 134, 11),
                       (128, 0, 128), (0, 0, 0), name)
-        doge_data_out.write("420," + name + ",glasses,gilded,gilded,ultra,420,\"(45, 232, 6)\",\"(111, 160, 140)\","
-                            + str(int(time.time())) + "\n")
+        generate_metadata("420", "glasses", name, "gilded", "gilded", "ultra", str(generation), "420", str(int(time.time())), "")
     else:
-        generate_data(id, name)
+        generate_data(token_id, name, str(generation))
 
 
 if __name__ == '__main__':
     # Generation 1 Doge Generation
     # Generate 500 doges starting from 0
     for entry in range(0, 500):
-        doge_factory(entry)
-    doge_data_out.close()
+        doge_factory(entry, 1)
+
+    doge_names_in.close()
