@@ -3,3 +3,4 @@ doge_generation/doge_data/
 doge_generation/config/
 .idea/
 examples/
+*.pyc
