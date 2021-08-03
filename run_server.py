@@ -12,7 +12,9 @@ app = Flask(__name__)
 # connects to local dogecoin node to confirm the user supplied doge address is valid before minting new BitDoge
 def confirm_doge_addr(doge_addr):
     found = False
-    data = subprocess.run(["./checkDogeAddr.sh", str(doge_addr)],capture_output=True)
+    print(doge_addr)
+    data = subprocess.run(["sudo", "~/dogecoin-1.14.3/bin/dogecoin-cli", "validateadress", str(doge_addr)],capture_output=True)
+    print(data.stdout.decode("utf-8"))
     # Confirm data has match with '"isValid": true'
     data_str = data.stdout.decode("utf-8")
     res = re.search(".*isvalid\": true.*", data_str)
@@ -50,13 +52,13 @@ def mint():
 
 
 @app.route("/mint", methods=["POST"])
-def mint():
+def mint_post():
     # TODO: Get doge addr from user, and get gen number and token ID from stmark contract
     doge_addr = str(request.form['DogeAddr'])
     if confirm_doge_addr(doge_addr):
-        status = "Valid"
+        status = str(doge_addr) + ": Valid"
     else:
-        status = "InValid"
+        status = str(doge_addr) + ": InValid"
     temmplateData = {
         'title': "Mint New BitDoge",
         'DogeAddr': doge_addr,
