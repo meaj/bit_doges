@@ -42,3 +42,8 @@ def home():
 def mint():
     # TODO: Get doge addr from user, and get gen number and token ID from stmark contract
     return render_template("mint.html")
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=80)
+
