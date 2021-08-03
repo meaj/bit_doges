@@ -1,8 +1,12 @@
 from doge_generation import bitdoges_generation_script
+from flask import Flask, render_template, send_file, make_response, request
 import subprocess
 import re
 
 # TODO: Link to BitDoges contract to supply uri after a user submits a form with a valid doge address requesting to mint
+
+
+app = Flask(__name__)
 
 
 # connects to local dogecoin node to confirm the user supplied doge address is valid before minting new BitDoge
@@ -26,3 +30,15 @@ def mint_doge(token_id, gen_number, doge_addr):
         # Todo: add call to _safemint from BitDoges.sol wiht uri supplied by IPFS upload function
     else:
         print("Invalid Doge Address, please try again")
+
+
+@app.route("/home")
+@app.route("/")
+def home():
+    return render_template("home.html")
+
+
+@app.route("/mint")
+def mint():
+    # TODO: Get doge addr from user, and get gen number and token ID from stmark contract
+    return render_template("mint.html")

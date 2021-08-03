@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    {% if title %}
+          <title> BitDoges - {{ title }} </title>
+    {% else %}
+          <title> BitDoges </title>
+    {% endif %}
+    <link rel="stylesheet" href='../static/style.css'/>
+    {% endblock %}
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+    <br>
+    <p>Developed by Meaj</p>
+</body>
+</html>
