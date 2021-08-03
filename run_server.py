@@ -1,6 +1,6 @@
 from doge_generation import bitdoges_generation_script
 from flask import Flask, render_template, send_file, make_response, request
-import subprocess
+import coinaddr
 import re
 
 # TODO: Link to BitDoges contract to supply uri after a user submits a form with a valid doge address requesting to mint
@@ -13,13 +13,9 @@ app = Flask(__name__)
 def confirm_doge_addr(doge_addr):
     found = False
     print(doge_addr)
-    data = subprocess.run(["sudo", "~/dogecoin-1.14.3/bin/dogecoin-cli", "validateadress", str(doge_addr)],capture_output=True)
-    print(data.stdout.decode("utf-8"))
-    # Confirm data has match with '"isValid": true'
-    data_str = data.stdout.decode("utf-8")
-    res = re.search(".*isvalid\": true.*", data_str)
-    if res:
-        found = True
+    data = coinaddr.validate('dogecoin', doge_addr.encode("utf-8"))
+    if data:
+        found = data.valid
     return found
 
 
