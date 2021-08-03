@@ -41,7 +41,28 @@ def home():
 @app.route("/mint")
 def mint():
     # TODO: Get doge addr from user, and get gen number and token ID from stmark contract
-    return render_template("mint.html")
+    temmplateData = {
+        'title': "Mint New BitDoge",
+        'DogeAddr': "Enter Address",
+        'valid': ""
+    }
+    return render_template("mint.html", **temmplateData)
+
+
+@app.route("/mint", methods=["POST"])
+def mint():
+    # TODO: Get doge addr from user, and get gen number and token ID from stmark contract
+    doge_addr = str(request.form['DogeAddr'])
+    if confirm_doge_addr(doge_addr):
+        status = "Valid"
+    else:
+        status = "InValid"
+    temmplateData = {
+        'title': "Mint New BitDoge",
+        'DogeAddr': doge_addr,
+        'valid': status
+    }
+    return render_template("mint.html", **temmplateData)
 
 
 if __name__ == "__main__":
