@@ -13,7 +13,10 @@ app = Flask(__name__)
 def confirm_doge_addr(doge_addr):
     found = False
     print(doge_addr)
-    data = coinaddr.validate('dogecoin', doge_addr.encode("utf-8"))
+    try:
+        data = coinaddr.validate('dogecoin', doge_addr.encode("utf-8"))
+    except TypeError:
+        data = None
     if data:
         found = data.valid
     return found
