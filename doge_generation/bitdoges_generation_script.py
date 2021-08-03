@@ -26,7 +26,7 @@ dirname = os.path.dirname(__file__)
 dimensions = 512, 512
 
 # read in the names of all the doges
-doge_names_in = open(dirname + "\\config\\names.txt", "r")
+doge_names_in = open(dirname + "/config/names.txt", "r")
 names = doge_names_in.read().splitlines()
 
 # Array of 69 (nice) colors that are used to create the doges
@@ -50,11 +50,11 @@ eye_pool = color_array.copy()
 
 def generate_metadata (doge_id, doge_type, name, eye_type, snoz_type, foil_type, gen, wow_value, bd_time, addr):
     doge_metadata = json_template.doge_metadata_template
-    metadata_out = dirname + '\\doge_data\\doge_json\\' + doge_id + '.json'
+    metadata_out = dirname + '/doge_data/doge_json/' + doge_id + '.json'
     print("Generating metadata for funny doge picture")
     doge_metadata["name"] = name
-    doge_metadata["external_url"] = "https:\\\\bitdoges.com\\" + str(doge_id)
-    doge_metadata["image"] = dirname + "\\doge_data\\doge_images\\" + doge_id + ".png"
+    doge_metadata["external_url"] = "https:\\bitdoges.com\\" + str(doge_id)
+    doge_metadata["image"] = dirname + "/doge_data/doge_images/" + doge_id + ".png"
     doge_metadata["attributes"] = [
         {"trait_type": "Type", "value": doge_type},
         {"trait_type": "Eyes", "value": eye_type},
