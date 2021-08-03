@@ -1,12 +1,20 @@
 from doge_generation import bitdoges_generation_script
+import subprocess
+import re
 
 # TODO: Link to BitDoges contract to supply uri after a user submits a form with a valid doge address requesting to mint
 
 
 # connects to local dogecoin node to confirm the user supplied doge address is valid before minting new BitDoge
 def confirm_doge_addr(doge_addr):
-    # TODO: connect to local node and confirm doge address is valid
-    return True
+    found = False
+    data = subprocess.run(["./checkDogeAddr.sh", str(doge_addr)],capture_output=True)
+    # Confirm data has match with '"isValid": true'
+    data_str = data.stdout.decode("utf-8")
+    res = re.search(".*isvalid\": true.*", data_str)
+    if res:
+        found = True
+    return found
 
 
 # Uses the contract supplied token id and generation number, and the user supplied doge address to forge a new doge
