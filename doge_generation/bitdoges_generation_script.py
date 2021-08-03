@@ -16,7 +16,7 @@ from random import seed, randint, shuffle
 # used to get a birthdate timestamp
 import time
 
-import json_template
+from doge_generation import json_template
 import json
 
 # gets path to be used in image creation mechanism, using os
