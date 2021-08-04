@@ -12,6 +12,7 @@ web3 = Web3(Web3.HTTPProvider(infura_url))
 contract_abi = ""
 contract_addr = ""
 
+DogeCount = 0
 
 app = Flask(__name__)
 
@@ -37,6 +38,8 @@ def mint_doge(token_id, gen_number, doge_addr):
         # TODO: add call to _safemint from BitDoges.sol
         # TODO: add function to upload to IPFS when _safemint is complete
         # TODO: attach URI generated from uploading to IPFS when complete/once URI can be validated
+        global DogeCount
+        DogeCount = DogeCount + 1
 
     else:
         print("Invalid Doge Address, please try again")
@@ -54,7 +57,7 @@ def mint():
     temmplateData = {
         'title': "Mint New BitDoge",
         'DogeAddr': "Enter Address",
-        'valid': ""
+        'status': ""
     }
     return render_template("mint.html", **temmplateData)
 
@@ -77,13 +80,14 @@ def mint_post():
     # TODO: Get doge addr from user, and get gen number and token ID from stmark contract
     doge_addr = str(request.form['DogeAddr'])
     if confirm_doge_addr(doge_addr):
-        status = str(doge_addr) + ": Valid"
+        mint_doge(DogeCount, 0, doge_addr)
+        status = "Doge Minted with address: " + str(doge_addr)
     else:
         status = str(doge_addr) + ": InValid"
     temmplateData = {
         'title': "Mint New BitDoge",
         'DogeAddr': doge_addr,
-        'valid': status
+        'status': status
     }
     return render_template("mint.html", **temmplateData)
 
