@@ -1,9 +1,16 @@
 from doge_generation import bitdoges_generation_script
 from flask import Flask, render_template, send_file, make_response, request
 import coinaddr
-import re
+from web3 import Web3
 
-# TODO: Link to BitDoges contract to supply uri after a user submits a form with a valid doge address requesting to mint
+
+# Setup connection to Eth Network
+infura_url = ""
+web3 = Web3(Web3.HTTPProvider(infura_url))
+
+# Link to BitDoges contract to supply uri after a user submits a form with a valid doge address requesting to mint
+contract_abi = ""
+contract_addr = ""
 
 
 app = Flask(__name__)
@@ -27,8 +34,10 @@ def mint_doge(token_id, gen_number, doge_addr):
     if confirm_doge_addr(doge_addr):
         print("Forging new doge #:" + str(token_id))
         bitdoges_generation_script.doge_factory(token_id, gen_number, doge_addr)
-        # TODO: add function to upload to IPFS and call here
-        # Todo: add call to _safemint from BitDoges.sol wiht uri supplied by IPFS upload function
+        # TODO: add call to _safemint from BitDoges.sol
+        # TODO: add function to upload to IPFS when _safemint is complete
+        # TODO: attach URI generated from uploading to IPFS when complete/once URI can be validated
+
     else:
         print("Invalid Doge Address, please try again")
 
@@ -48,6 +57,19 @@ def mint():
         'valid': ""
     }
     return render_template("mint.html", **temmplateData)
+
+
+@app.route("/gallery")
+def gallery():
+    temmplateData = {
+        'title': "Gallery"
+    }
+    return render_template("gallery.html", **temmplateData)
+
+
+@app.route("/roadmap")
+def roadmap():
+    return render_template("roadmap.html")
 
 
 @app.route("/mint", methods=["POST"])
