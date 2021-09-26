@@ -55,7 +55,7 @@ def home():
 def mint():
     # TODO: Get doge addr from user, and get gen number and token ID from stmark contract
     temmplateData = {
-        'title': "Mint New BitDoge",
+        'title': "Test DogeAddr for Minting",
         'DogeAddr': "Enter Address",
         'status': ""
     }
@@ -77,15 +77,15 @@ def roadmap():
 
 @app.route("/mint", methods=["POST"])
 def mint_post():
-    # TODO: Get doge addr from user, and get gen number and token ID from stmark contract
+    # TODO: Get doge addr from user, and get gen number and token ID from smart contract
     doge_addr = str(request.form['DogeAddr'])
     if confirm_doge_addr(doge_addr):
-        mint_doge(DogeCount, 0, doge_addr)
-        status = "Doge Minted with address: " + str(doge_addr)
+        # mint_doge(DogeCount, 0, doge_addr)
+        status = "Valid Address: " + str(doge_addr)
     else:
         status = str(doge_addr) + ": InValid"
     temmplateData = {
-        'title': "Mint New BitDoge",
+        'title': "Test DogeAddr for Minting",
         'DogeAddr': doge_addr,
         'status': status
     }
