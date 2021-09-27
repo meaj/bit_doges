@@ -43,6 +43,7 @@ def convert_frames(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
     vizor = (131, 118, 156)
     bork_eye_pico = (255, 0, 77)
     moon_glass = (0, 135, 81)
+    black = (0, 0, 0)
 
     # colors hardcoded for replacement
     gr = (105, 105, 105)
@@ -56,6 +57,7 @@ def convert_frames(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
         # Open each fram in RGBA format and conver to array
         img = Image.open(skeleton_dir + file)
         img = img.convert("RGBA")
+        alpha = img.split()[3]
         dat = np.array(img)
 
         # Swap each of the skeleton colors
@@ -68,7 +70,12 @@ def convert_frames(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
         dat = swap_color(dat, nose, nz)
         dat = swap_color(dat, head, hd)
         dat = swap_color(dat, throat, th)
+        dat = swap_color(dat, black, ol)
         img = Image.fromarray(dat)
+
+        img = img.convert('RGB').convert('P', palette=Image.ADAPTIVE, colors=255)
+        mask = Image.eval(alpha, lambda a: 255 if a <=128 else 0)
+        img.paste(255, mask)
         
         # first image converted should be skeleton_n so should be excluded from gif frames
         if img_count != 0:
@@ -83,7 +90,7 @@ def convert_frames(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
 
     # TODO: fix gif generation
     # Generate gif from recolored frame images
-    frames[0].save(out_dir + name + '.gif', save_all=True, append_images=frames[1:], interlace=False, optimize=False, duration=50, palette='RGBA', loop=0, disposal=0, transparency=256) 
+    frames[0].save(out_dir + name + '.gif', save_all=True, append_images=frames[1:], interlace=False, optimize=False, duration=50, palette='RGB', loop=0, disposal=1, transparency=255) 
 
 
 
