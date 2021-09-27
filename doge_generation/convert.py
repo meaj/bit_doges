@@ -42,6 +42,12 @@ def convert_frames(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
     eye_white = (171, 82, 54)
     vizor = (131, 118, 156)
     bork_eye_pico = (255, 0, 77)
+    moon_glass = (0, 135, 81)
+
+    # colors hardcoded for replacement
+    gr = (105, 105, 105)
+    be = (34, 177, 76)
+    gl = (153,217, 234)
 
     # Replace colors for each skeleton
     img_count = 0
@@ -56,6 +62,9 @@ def convert_frames(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
         dat = swap_color(dat, background, bg)
         dat = swap_color(dat, eye_pupil, ep)
         dat = swap_color(dat, eye_white, ew)
+        dat = swap_color(dat, vizor, gr)
+        dat = swap_color(dat, moon_glass, gl)
+        dat = swap_color(dat,bork_eye_pico, be)
         dat = swap_color(dat, nose, nz)
         dat = swap_color(dat, head, hd)
         dat = swap_color(dat, throat, th)
