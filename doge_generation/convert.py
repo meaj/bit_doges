@@ -24,8 +24,8 @@ def swap_color(data, color1, color2):
 def convert_frames(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
     # create output dir
     home_dir = os.getcwd()
-    if not os.path.exists(home_dir + "/doge_data/"+ name):
-        out_dir = home_dir + "/doge_data/" + str(doge_id) + "_" + name + "/"
+    out_dir = home_dir + "/doge_data/" + str(doge_id) + "_" + name + "/"
+    if not os.path.exists(out_dir):
         os.mkdir(out_dir)
         
 
@@ -88,7 +88,6 @@ def convert_frames(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
 
         img_count += 1
 
-    # TODO: fix gif generation
     # Generate gif from recolored frame images
     frames[0].save(out_dir + name + '.gif', save_all=True, append_images=frames[1:], interlace=False, optimize=False, duration=50, palette='RGB', loop=0, disposal=1, transparency=255) 
 
