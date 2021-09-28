@@ -16,10 +16,8 @@ from random import seed, randint, shuffle
 # used to get a birthdate timestamp
 import time
 
-import json_template
+from doge_generation import json_template, convert
 import json
-
-import convert
 
 # gets path to be used in image creation mechanism, using os
 dirname = os.path.dirname(__file__)
