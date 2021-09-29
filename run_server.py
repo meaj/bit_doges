@@ -12,7 +12,7 @@ web3 = Web3(Web3.HTTPProvider(infura_url))
 contract_abi = ""
 contract_addr = ""
 
-DogeCount = 0
+DogeCount = 12
 
 app = Flask(__name__)
 

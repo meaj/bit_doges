@@ -23,7 +23,7 @@ def swap_color(data, color1, color2):
 
 def convert_frames(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
     # create output dir
-    home_dir = os.getcwd()
+    home_dir = os.path.dirname(__file__)
     out_dir = home_dir + "/doge_data/" + str(doge_id) + "_" + name + "/"
     if not os.path.exists(out_dir):
         os.mkdir(out_dir)
