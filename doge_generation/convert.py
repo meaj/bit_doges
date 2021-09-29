@@ -1,6 +1,7 @@
 from PIL import Image
 import numpy as np
 import os
+import re
 
 # special colors:
 # bork_eye = (34, 177, 76)
@@ -51,10 +52,10 @@ def convert_frames(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
     gl = (153,217, 234)
 
     # Replace colors for each skeleton
-    img_count = 0
+
     frames = []
     for file in filelist:
-        # Open each fram in RGBA format and conver to array
+        # Open each frame in RGBA format and conver to array
         img = Image.open(skeleton_dir + file)
         img = img.convert("RGBA")
         alpha = img.split()[3]
@@ -78,15 +79,18 @@ def convert_frames(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
         img.paste(255, mask)
         
         # first image converted should be skeleton_n so should be excluded from gif frames
-        if img_count != 0:
-            outfile = out_dir + name + "_frame_" + str(img_count) + '.png'
-            frames.append(img)
-            img.save(outfile)
-        else:
+        # TODO: Properly sanitize your inputs here your dingus, you should match for that filename and then assemble the remaining frame files by replacing skeleton_n with the bitdoge name
+        # print(file)
+        t = re.compile('skeleton_\d\.png')
+        if t.match(file):
             outfile = out_dir + name + '.png'
             img.save(outfile)
-
-        img_count += 1
+        else:
+            # f = re.compile ("\d{3}")
+            # fn = f.match(file)
+            # outfile = out_dir + name + "_frame_" + str(fn) + '.png'
+            frames.append(img)
+            # img.save(outfile)
 
     # Generate gif from recolored frame images
     frames[0].save(out_dir + name + '.gif', save_all=True, append_images=frames[1:], interlace=False, optimize=False, duration=50, palette='RGB', loop=0, disposal=1, transparency=255) 
