@@ -33,6 +33,7 @@ def convert_frames(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
     # get correct skeleton based on doge_type
     skeleton_dir = home_dir + "/skeletons/" + str(doge_type) + "/"
     filelist = [file for file in os.listdir(skeleton_dir) if file.endswith('.png')]
+    filelist.sort()
 
     # Skeleton colors to replace
     background = (41, 173, 255)
@@ -79,7 +80,6 @@ def convert_frames(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
         img.paste(255, mask)
         
         # first image converted should be skeleton_n so should be excluded from gif frames
-        # TODO: Properly sanitize your inputs here your dingus, you should match for that filename and then assemble the remaining frame files by replacing skeleton_n with the bitdoge name
         # print(file)
         t = re.compile('skeleton_\d\.png')
         if t.match(file):
@@ -94,8 +94,3 @@ def convert_frames(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
 
     # Generate gif from recolored frame images
     frames[0].save(out_dir + name + '.gif', save_all=True, append_images=frames[1:], interlace=False, optimize=False, duration=50, palette='RGB', loop=0, disposal=1, transparency=255) 
-
-
-
-
-
