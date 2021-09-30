@@ -231,56 +231,64 @@ def generate_data(x, name, gen, addr):
     generate_metadata(str(x), style, name, eyes, snoz, foil, gen, str(wow), str(int(time.time())), addr)
 
 
-def doge_factory(token_id, generation, addr):
+def generate_preset_doge(token_id):
     name = names[token_id-1]
+    t_addr = "DEBA4cGspNuT6paX4kzSrNduttLcMrau5Z"
     if token_id == 1:
         generate_doge(0, 1, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (1, 1, 1), name)
-        generate_metadata("1", "glasses", name, "pink", "gilded", "ultra", str(generation), "420", str(int(time.time())), "DEBA4cGspNuT6paX4kzSrNduttLcMrau5Z")
+        generate_metadata("1", "glasses", name, "pink", "gilded", "ultra", str(0), "420", str(int(time.time())), "DEBA4cGspNuT6paX4kzSrNduttLcMrau5Z")
     elif token_id == 2:
         generate_doge(1, 2, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (1, 1, 1), name)
-        generate_metadata("2", "fedora", name, "pink", "gilded", "ultra", str(generation), "420", str(int(time.time())), addr)
+        generate_metadata("2", "fedora", name, "pink", "gilded", "ultra", str(0), "420", str(int(time.time())), t_addr)
     elif token_id == 3:
         generate_doge(2, 3, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (1, 1, 1), name)
-        generate_metadata("3", "vizor", name, "pink", "gilded", "ultra", str(generation), "420", str(int(time.time())), addr)
+        generate_metadata("3", "vizor", name, "pink", "gilded", "ultra", str(0), "420", str(int(time.time())), t_addr)
     elif token_id == 4:
         generate_doge(3, 4, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (1, 1, 1), name)
-        generate_metadata("4", "beanie", name, "pink", "gilded", "ultra", str(generation), "420", str(int(time.time())), addr)
+        generate_metadata("4", "beanie", name, "pink", "gilded", "ultra", str(0), "420", str(int(time.time())), t_addr)
     elif token_id == 5:
         generate_doge(4, 5, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (1, 1, 1), name)
-        generate_metadata("5", "angry", name, "pink", "gilded", "ultra", str(generation), "420", str(int(time.time())), addr)
+        generate_metadata("5", "angry", name, "pink", "gilded", "ultra", str(0), "420", str(int(time.time())), t_addr)
     elif token_id == 6:
         generate_doge(5, 6, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (1, 1, 1), name)
-        generate_metadata("6", "cutie", name, "pink", "gilded", "ultra", str(generation), "420", str(int(time.time())), addr)
+        generate_metadata("6", "cutie", name, "pink", "gilded", "ultra", str(0), "420", str(int(time.time())), t_addr)
     elif token_id == 7:
         generate_doge(6, 7, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (1, 1, 1), name)
-        generate_metadata("7", "normal", name, "pink", "gilded", "ultra", str(generation), "420", str(int(time.time())), addr)    
+        generate_metadata("7", "normal", name, "pink", "gilded", "ultra", str(0), "420", str(int(time.time())), t_addr)    
     elif token_id == 8:
         generate_doge(7, 8, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (1, 1, 1), name)
-        generate_metadata("8", "bork", name, "pink", "gilded", "ultra", str(generation), "420", str(int(time.time())), addr)
+        generate_metadata("8", "bork", name, "pink", "gilded", "ultra", str(0), "420", str(int(time.time())), t_addr)
     elif token_id == 9:
         generate_doge(8, 9, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (1, 1, 1), name)
-        generate_metadata("9", "doc", name, "pink", "gilded", "ultra", str(generation), "420", str(int(time.time())), addr)
+        generate_metadata("9", "doc", name, "pink", "gilded", "ultra", str(0), "420", str(int(time.time())), t_addr)
     elif token_id == 10:
         generate_doge(9, 10, (247, 117, 256), (237, 191, 136), (184, 134, 11),
                       (255, 20, 147), (184, 134, 11), (128, 0, 128), (1, 1, 1), name)
-        generate_metadata("10", "normal", name, "pink", "gilded", "ultra", str(generation), "420", str(int(time.time())), addr)
+        generate_metadata("10", "normal", name, "pink", "gilded", "ultra", str(0), "420", str(int(time.time())), t_addr)
     elif token_id == 11:
         generate_doge(6, 11, (247, 117, 256), (237, 191, 136), (240, 248, 255),
                       (1, 1, 1), (1, 1, 1), (128, 0, 128), (1, 1, 1), name)
-        generate_metadata("11", "normal", name, "normal", "normal", "ultra", str(generation), "420", str(int(time.time())), "DFGV8dmBfbkbJw2xEfnSK2qpNGyr4sMn97")
+        generate_metadata("11", "normal", name, "normal", "normal", "ultra", str(0), "420", str(int(time.time())), "DFGV8dmBfbkbJw2xEfnSK2qpNGyr4sMn97")
     elif token_id == 420:
         generate_doge(0, 420, (45, 232, 6), (111, 160, 140), (128, 0, 128), (184, 134, 11), (184, 134, 11),
                       (128, 0, 128), (1, 1, 1), name)
-        generate_metadata("420", "glasses", name, "gilded", "gilded", "ultra", str(generation), "420", str(int(time.time())), addr)
+        generate_metadata("420", "glasses", name, "gilded", "gilded", "ultra", str(0), "420", str(int(time.time())), t_addr)
+
+
+def doge_factory(token_id, generation, addr):
+    name = names[token_id-1]
+    if token_id < 12 or token_id == 420:
+        print("Special Doge minted, passed in address ignored!")
+        generate_preset_doge(token_id)
     else:
         generate_data(token_id, name, str(generation), addr)
 
