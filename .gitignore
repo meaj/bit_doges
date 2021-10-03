@@ -5,3 +5,4 @@ doge_generation/skeletons/
 .idea/
 examples/
 *.pyc
+.venv/
