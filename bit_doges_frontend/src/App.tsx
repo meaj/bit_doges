@@ -1,4 +1,5 @@
 // App.tsx
+import ConnectButton from "./components/ConnectButton";
 import { ChakraProvider } from "@chakra-ui/react"
 import Layout from "./components/Layout";
 
@@ -7,6 +8,7 @@ export default function App() {
     <ChakraProvider>
       <Layout>
         <p style={{ color: "white" }}>What's good frens!</p>
+        <ConnectButton />
       </Layout>
     </ChakraProvider>
   )
