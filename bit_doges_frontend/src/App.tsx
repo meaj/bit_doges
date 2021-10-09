@@ -7,7 +7,7 @@ export default function App() {
   return (
     <ChakraProvider>
       <Layout>
-        <p style={{ color: "white" }}>What's good frens!</p>
+        <p style={{ color: "white" }}>hemlo frens</p>
         <ConnectButton />
       </Layout>
     </ChakraProvider>
