@@ -1,0 +1,53 @@
+// NavLink.txs
+import { ReactNode } from 'react';
+import {
+  Box,
+  Flex,
+  HStack,
+  Link,
+} from '@chakra-ui/react';
+import ConnectButton from './ConnectButton';
+
+const Links = ['welcome', 'mint', 'roadmap'];
+
+type Props = {
+    onOpen: any;
+};
+
+const NavLink = ({ children }: { children: ReactNode }) => (
+  <Link
+    px={2}
+    py={1}
+    rounded={'md'}
+    color={'white'}
+    _hover={{
+      textDecoration: 'none',
+      bg: 'purple.700',
+    }}
+    href={'#'}>
+    {children}
+  </Link>
+);
+
+export default function withAction({onOpen}: Props) {
+  return (
+    <Box bg={'purple.900'} px={4}>
+    <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+        <HStack spacing={8} alignItems={'center'}>
+        <Box color={'white'}>BitDoges</Box>
+        <HStack
+            as={'nav'}
+            spacing={4}
+            display={{ base: 'none', md: 'flex' }}>
+            {Links.map((link) => (
+            <NavLink key={link}>{link}</NavLink>
+            ))}
+        </HStack>
+        </HStack>
+        <Flex alignItems={'center'}>
+        <ConnectButton handleOpenModal={onOpen}/>
+        </Flex>
+    </Flex>
+    </Box>
+  );
+}

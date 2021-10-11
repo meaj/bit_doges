@@ -54,6 +54,6 @@ export default function ConnectButton({ handleOpenModal }: Props) {
       </Button>
     </Box>
   ) : (
-    <Button onClick={handleConnectWallet}>such connect</Button>
+    <Button bg="purple.400" onClick={handleConnectWallet}>such connect</Button>
   );
 }
