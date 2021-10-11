@@ -4,6 +4,7 @@ import theme from './theme';
 import SplitScreen from './components/SplitScreen';
 import bitdogesGif from './static/BitDoges.gif';
 import NavLink from './components/NavLink';
+import FooterBar from './components/FooterBar';
 import "@fontsource/inter";
 
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
     <ChakraProvider theme={theme}>
       <NavLink onOpen={onOpen} />
       <SplitScreen isOpen={isOpen} onClose={onClose} dogeGif={bitdogesGif} />
+      <FooterBar />
     </ChakraProvider>
   )
 }
