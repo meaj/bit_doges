@@ -7,11 +7,14 @@ import {
   Link,
 } from '@chakra-ui/react';
 import ConnectButton from './ConnectButton';
+import AccountModal from "./AccountModal";
 
 const Links = ['welcome', 'mint', 'roadmap'];
 
 type Props = {
-    onOpen: any;
+  onOpen: any;
+  onClose: any;
+  isOpen: any;
 };
 
 const NavLink = ({ children }: { children: ReactNode }) => (
@@ -29,7 +32,7 @@ const NavLink = ({ children }: { children: ReactNode }) => (
   </Link>
 );
 
-export default function withAction({onOpen}: Props) {
+export default function withAction({ onOpen, isOpen, onClose }: Props) {
   return (
     <Box bg={'purple.900'} px={4}>
     <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
@@ -46,6 +49,7 @@ export default function withAction({onOpen}: Props) {
         </HStack>
         <Flex alignItems={'center'}>
         <ConnectButton handleOpenModal={onOpen}/>
+	<AccountModal isOpen={isOpen} onClose={onClose} />	
         </Flex>
     </Flex>
     </Box>
