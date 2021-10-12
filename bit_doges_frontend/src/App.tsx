@@ -5,6 +5,8 @@ import Welcome from './components/Welcome';
 import bitdogesGif from './static/BitDoges.gif';
 import NavLink from './components/NavLink';
 import FooterBar from './components/FooterBar';
+import RoadmapScreen from './components/Roadmap';
+import MintScreen from './components/Mint';
 import "@fontsource/inter";
 
 export default function App() {
@@ -13,6 +15,8 @@ export default function App() {
     <ChakraProvider theme={theme}>
       <NavLink onOpen={onOpen} isOpen={isOpen} onClose={onClose}/>
       <Welcome dogeGif={bitdogesGif} />
+      <RoadmapScreen dogeGif={bitdogesGif} />
+      <MintScreen mysteryGif={bitdogesGif} />
       <FooterBar />
     </ChakraProvider>
   )
