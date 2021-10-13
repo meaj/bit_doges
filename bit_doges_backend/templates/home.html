@@ -1,0 +1,24 @@
+{% extends "template.html" %}
+{% block head %}
+    {{ super() }}
+      <style>
+          body {
+              text-align: center;
+          }
+          #g1,
+          #g2 {
+              width: 200px;
+              height: 160px;
+              display: inline-block;
+              margin: 1em;
+          }
+      </style>
+{% endblock %}
+{% block content %}
+    <h1> Welcome to BitDoges </h1>
+    <h3> Max 500 Doges minted per year @ 0.01 ETH </h3>
+    <h3> 5 Year lifespan =  Max 2500 Doges</h3>
+    <h3> Minter can add Doge Address to metadata </h3>
+    <h5> Site Under Development</h5>
+    <h5> Wizard hard at work </h5>
+{% endblock %}
