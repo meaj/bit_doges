@@ -6,6 +6,7 @@ import {
   HStack,
   Link,
 } from '@chakra-ui/react';
+import { Link as RouteLink } from "react-router-dom";
 import ConnectButton from './ConnectButton';
 import AccountModal from "./AccountModal";
 
@@ -43,7 +44,9 @@ export default function withAction({ onOpen, isOpen, onClose }: Props) {
             spacing={4}
             display={{ base: 'none', md: 'flex' }}>
             {Links.map((link) => (
-            <NavLink key={link}>{link}</NavLink>
+              <RouteLink to={link}>
+                <NavLink key={link}>{link}</NavLink>
+              </RouteLink>
             ))}
         </HStack>
         </HStack>

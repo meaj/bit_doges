@@ -8,16 +8,27 @@ import FooterBar from './components/FooterBar';
 import RoadmapScreen from './components/Roadmap';
 import MintScreen from './components/Mint';
 import "@fontsource/inter";
+import { BrowserRouter as Router, Switch, Route,  } from "react-router-dom";
 
 export default function App() {
   const { isOpen, onOpen, onClose} = useDisclosure();
   return (
     <ChakraProvider theme={theme}>
-      <NavLink onOpen={onOpen} isOpen={isOpen} onClose={onClose}/>
-      <Welcome dogeGif={bitdogesGif} />
-      <RoadmapScreen dogeGif={bitdogesGif} />
-      <MintScreen mysteryGif={bitdogesGif} />
-      <FooterBar />
+      <Router>
+        <NavLink onOpen={onOpen} isOpen={isOpen} onClose={onClose}/>
+        <Switch>
+          <Route exact={true} path={["/welcome", "/"]}>
+            <Welcome dogeGif={bitdogesGif} />
+          </Route>
+          <Route path="/roadmap">
+            <RoadmapScreen dogeGif={bitdogesGif} />
+          </Route>
+          <Route path="/mint">
+            <MintScreen mysteryGif={bitdogesGif} />
+          </Route>
+        </Switch>
+        <FooterBar />
+      </Router>
     </ChakraProvider>
   )
 }

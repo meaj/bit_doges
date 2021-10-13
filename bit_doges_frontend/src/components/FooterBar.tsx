@@ -53,7 +53,7 @@ export default function FooterBar() {
         spacing={4}
         justify={{ base: 'center', md: 'space-between' }}
         align={{ base: 'center', md: 'center' }}>
-        <Text>a meaj joint, copy if you want but gimme credit</Text>
+        <Text>a meaj joint</Text>
         <Stack direction={'row'} spacing={6}>
           <SocialButton label={'Twitter'} href={'https://twitter.com/BitDoges'}>
             <FaTwitter />
