@@ -48,11 +48,10 @@ def forge_doge(token_id, gen_number, doge_addr):
 
 
 
-@app.route("/mint", methods=["POST, GET"])
+@app.route("/mint", methods=['POST'])
 def mint_post():
     # TODO: Get doge addr from api call
-    # doge_addr = str(request.form['DogeAddr'])
-    doge_addr = str(request.args['addr'])
+    doge_addr = "DEBA4cGspNuT6paX4kzSrNduttLcMrau5Z"
     doge_id = str(request.args['id'])
     if confirm_doge_addr(doge_addr):
         # TODO: get json resulting from minting doge
