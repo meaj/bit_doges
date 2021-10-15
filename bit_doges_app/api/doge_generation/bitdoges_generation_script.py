@@ -225,11 +225,12 @@ def generate_data(x, name, gen, addr):
     # Write stats to output
     print("\nID: " + str(x) + "\nStyle: " + style + "\nFoil: " + foil + "\nEyes: " + eyes + "\nSnoz: "
           + snoz + "\nCoat: " + str(head_color) + "\nUndercoat: " + str(throat_color) + "\nTotal wow: " + str(wow))
+    # forge the doge
+    generate_doge(doge_style, x, head_color, throat_color, eye_white, eye_pupil, snoz_color, background, outline, name)
+
     # Write Metadata to file and get JSON to return
     doge_json = generate_metadata(str(x), style, name, eyes, snoz, foil, gen, str(wow), str(int(time.time())), addr)
 
-    # forge the doge
-    generate_doge(doge_style, x, head_color, throat_color, eye_white, eye_pupil, snoz_color, background, outline, name)
     return doge_json
 
 
