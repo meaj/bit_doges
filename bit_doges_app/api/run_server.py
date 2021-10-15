@@ -1,5 +1,5 @@
 from doge_generation import bitdoges_generation_script
-from flask import Flask, render_template, send_file, make_response, request
+from flask import Flask, render_template, send_file, make_response, request, jsonify
 import coinaddr
 from web3 import Web3
 
@@ -31,16 +31,19 @@ def confirm_doge_addr(doge_addr):
 
 
 # Uses the contract supplied token id and generation number, and the user supplied doge address to forge a new doge
-def mint_doge(token_id, gen_number, doge_addr):
+def forge_doge(token_id, gen_number, doge_addr):
     if confirm_doge_addr(doge_addr):
+        # TODO: add check to confirm token_id not already in use
         print("Forging new doge #:" + str(token_id))
-        bitdoges_generation_script.doge_factory(token_id, gen_number, doge_addr)
+        # Get json data about doge from generation script
+        doge_json = bitdoges_generation_script.doge_factory(token_id, gen_number, doge_addr)
         # TODO: Manage DogeCount by checking contract
         global DogeCount
         DogeCount = DogeCount + 1
 
     else:
         print("Invalid Doge Address, please try again")
+    return doge_json
 
 
 
@@ -50,12 +53,12 @@ def mint_post():
     doge_addr = str(request.form['DogeAddr'])
     if confirm_doge_addr(doge_addr):
         # TODO: get json resulting from minting doge
-        mint_doge(DogeCount, 0, doge_addr)
+        doge_data = forge_doge(DogeCount, 0, doge_addr)
         status = "Minted BitDoge with address: " + str(doge_addr)
     else:
         status = "Invalid Address, no BitDoge minted"
     # TODO: return json for the resulting doge or a message asking to try again
-    return doge_data
+    return jsonify(doge_data)
 
 
 if __name__ == "__main__":
