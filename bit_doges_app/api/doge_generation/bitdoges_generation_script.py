@@ -55,7 +55,7 @@ def generate_metadata (doge_id, doge_type, name, eye_type, snoz_type, foil_type,
     print("Generating metadata for funny doge picture")
     doge_metadata["name"] = name
     doge_metadata["external_url"] = "https:\\bitdoges.com\\" + str(doge_id)
-    doge_metadata["image"] = dirname + "/doge_data/doge_images/" + doge_id + ".png"
+    doge_metadata["image"] = ""
     doge_metadata["attributes"] = [
         {"trait_type": "Type", "value": doge_type},
         {"trait_type": "Eyes", "value": eye_type},
@@ -68,7 +68,8 @@ def generate_metadata (doge_id, doge_type, name, eye_type, snoz_type, foil_type,
     ]
     with open(metadata_out, "w") as file:
         json.dump(doge_metadata, file)
-    return json.dump(doge_metadata)
+
+    return doge_metadata
 
 
 # Generates and saves each doge image
