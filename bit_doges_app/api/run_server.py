@@ -35,9 +35,7 @@ def mint_doge(token_id, gen_number, doge_addr):
     if confirm_doge_addr(doge_addr):
         print("Forging new doge #:" + str(token_id))
         bitdoges_generation_script.doge_factory(token_id, gen_number, doge_addr)
-        # TODO: add call to _safemint from BitDoges.sol
-        # TODO: add function to upload to IPFS when _safemint is complete
-        # TODO: attach URI generated from uploading to IPFS when complete/once URI can be validated
+        # TODO: Manage DogeCount by checking contract
         global DogeCount
         DogeCount = DogeCount + 1
 
@@ -45,22 +43,19 @@ def mint_doge(token_id, gen_number, doge_addr):
         print("Invalid Doge Address, please try again")
 
 
-# TODO: Convert to API call that takes a doge address as input and returns the json data for the BitDoge
+
 @app.route("/mint", methods=["POST"])
 def mint_post():
-    # TODO: Get doge addr from user, and get gen number and token ID from smart contract
+    # TODO: Get doge addr from api call
     doge_addr = str(request.form['DogeAddr'])
     if confirm_doge_addr(doge_addr):
+        # TODO: get json resulting from minting doge
         mint_doge(DogeCount, 0, doge_addr)
         status = "Minted BitDoge with address: " + str(doge_addr)
     else:
         status = "Invalid Address, no BitDoge minted"
-    temmplateData = {
-        'title': "Test DogeAddr for Minting",
-        'DogeAddr': doge_addr,
-        'status': status
-    }
-    return render_template("mint.html", **temmplateData)
+    # TODO: return json for the resulting doge or a message asking to try again
+    return doge_data
 
 
 if __name__ == "__main__":

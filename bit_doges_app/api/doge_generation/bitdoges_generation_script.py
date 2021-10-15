@@ -74,6 +74,7 @@ def generate_metadata (doge_id, doge_type, name, eye_type, snoz_type, foil_type,
 def generate_doge(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
     print("generating funny doge picture")
     convert.convert_frames(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name)
+    # TODO: Create SVG of doge instead of base PNG
 
 
 def generate_data(x, name, gen, addr):
