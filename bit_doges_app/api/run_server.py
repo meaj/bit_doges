@@ -52,7 +52,7 @@ def forge_doge(token_id, gen_number, doge_addr):
 def mint_post():
     # TODO: Get doge addr from api call
     doge_addr = "DEBA4cGspNuT6paX4kzSrNduttLcMrau5Z"
-    doge_id = str(request.args['id'])
+    doge_id = int(request.args['id'])
     if confirm_doge_addr(doge_addr):
         # TODO: get json resulting from minting doge
         doge_data = forge_doge(doge_id, 0, doge_addr)
