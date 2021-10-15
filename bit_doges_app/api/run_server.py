@@ -1,3 +1,4 @@
+import re
 from doge_generation import bitdoges_generation_script
 from flask import Flask, render_template, send_file, make_response, request, jsonify
 import coinaddr
@@ -50,10 +51,12 @@ def forge_doge(token_id, gen_number, doge_addr):
 @app.route("/mint", methods=["POST"])
 def mint_post():
     # TODO: Get doge addr from api call
-    doge_addr = str(request.form['DogeAddr'])
+    # doge_addr = str(request.form['DogeAddr'])
+    doge_addr = str(request.args['addr'])
+    doge_id = str(request.args['id'])
     if confirm_doge_addr(doge_addr):
         # TODO: get json resulting from minting doge
-        doge_data = forge_doge(DogeCount, 0, doge_addr)
+        doge_data = forge_doge(doge_id, 0, doge_addr)
         status = "Minted BitDoge with address: " + str(doge_addr)
     else:
         status = "Invalid Address, no BitDoge minted"
