@@ -45,36 +45,7 @@ def mint_doge(token_id, gen_number, doge_addr):
         print("Invalid Doge Address, please try again")
 
 
-@app.route("/home")
-@app.route("/")
-def home():
-    return render_template("home.html")
-
-
-@app.route("/mint")
-def mint():
-    # TODO: Get doge addr from user, and get gen number and token ID from stmark contract
-    temmplateData = {
-        'title': "Test DogeAddr for Minting",
-        'DogeAddr': "Enter Address",
-        'status': ""
-    }
-    return render_template("mint.html", **temmplateData)
-
-
-@app.route("/gallery")
-def gallery():
-    temmplateData = {
-        'title': "Gallery"
-    }
-    return render_template("gallery.html", **temmplateData)
-
-
-@app.route("/roadmap")
-def roadmap():
-    return render_template("roadmap.html")
-
-
+# TODO: Convert to API call that takes a doge address as input and returns the json data for the BitDoge
 @app.route("/mint", methods=["POST"])
 def mint_post():
     # TODO: Get doge addr from user, and get gen number and token ID from smart contract
