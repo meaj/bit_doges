@@ -32,12 +32,12 @@ def confirm_doge_addr(doge_addr):
 
 
 # Uses the contract supplied token id and generation number, and the user supplied doge address to forge a new doge
-def forge_doge(token_id, gen_number, doge_addr):
+def forge_doge(token_id, doge_addr):
     if confirm_doge_addr(doge_addr):
         # TODO: add check to confirm token_id not already in use
         print("Forging new doge #:" + str(token_id))
         # Get json data about doge from generation script
-        doge_json = bitdoges_generation_script.doge_factory(token_id, gen_number, doge_addr)
+        doge_json = bitdoges_generation_script.doge_factory(token_id, doge_addr)
         # TODO: Manage DogeCount by checking contract
         global DogeCount
         DogeCount = DogeCount + 1
@@ -55,7 +55,7 @@ def mint_post():
     doge_id = int(request.args['id'])
     if confirm_doge_addr(doge_addr):
         # TODO: get json resulting from minting doge
-        doge_data = forge_doge(doge_id, 0, doge_addr)
+        doge_data = forge_doge(doge_id, doge_addr)
         status = "Minted BitDoge with address: " + str(doge_addr)
     else:
         status = "Invalid Address, no BitDoge minted"
