@@ -4,9 +4,6 @@ import os
 import re
 import codecs
 
-# special colors:
-# bork_eye = (34, 177, 76)
-# vizor doubles for bork_eye outline, space doge helmet, and doc doge mirror
 
 # Converts RGB to HEX values
 def rgb_to_hex(rgb):
