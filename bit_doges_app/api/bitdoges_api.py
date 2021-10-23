@@ -1,6 +1,5 @@
-import re
-from doge_generation import bitdoges_generation_script
-from flask import Flask, render_template, send_file, make_response, request, jsonify
+from doge_generation import bitdoges_generation, json_template
+from flask import Flask, request, jsonify
 import coinaddr
 from web3 import Web3
 
@@ -37,7 +36,7 @@ def forge_doge(token_id, doge_addr):
         # TODO: add check to confirm token_id not already in use
         print("Forging new doge #:" + str(token_id))
         # Get json data about doge from generation script
-        doge_json = bitdoges_generation_script.doge_factory(token_id, doge_addr)
+        doge_json = bitdoges_generation.doge_factory(token_id, doge_addr)
         # TODO: Manage DogeCount by checking contract
         global DogeCount
         DogeCount = DogeCount + 1
