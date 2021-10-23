@@ -31,7 +31,7 @@ def confirm_doge_addr(doge_addr):
 
 
 # Uses the contract supplied token id and generation number, and the user supplied doge address to forge a new doge
-def forge_doge(token_id, doge_addr):
+def forge_bitdoge(token_id, doge_addr):
     # TODO: add check to confirm token_id not already in use
     print("Forging new doge #:" + str(token_id))
     # Get json data about doge from generation script
@@ -42,20 +42,20 @@ def forge_doge(token_id, doge_addr):
     return doge_json
 
 
-def get_doge(token_id):
+def get_bitdoge(token_id):
     # TODO: add logic to check for existence of relevant doge_data folder
     return True
 
 
 # Entry point for minting bitdoge
 @app.route("/mint", methods=['POST'])
-def mint_post():
+def mint_bitdoge():
     # TODO: Get doge addr from api call
     doge_addr = "DEBA4cGspNuT6paX4kzSrNduttLcMrau5Z"
     doge_id = int(request.args['id'])
     if confirm_doge_addr(doge_addr):
         # TODO: get json resulting from minting doge
-        doge_data = forge_doge(doge_id, doge_addr)
+        doge_data = forge_bitdoge(doge_id, doge_addr)
         status = "Minted BitDoge with address: " + str(doge_addr)
     else:
         status = "Invalid Address, no BitDoge minted"
@@ -64,11 +64,11 @@ def mint_post():
 
 
 # Entry point for viewing bitdoge
-@app.route("/bitdoge/", methods=['GET'])
-def view_doge():
+@app.route("/bitdoge", methods=['GET'])
+def view_bitdoge():
     doge_id = int(request.args['id'])
     # check if doge exists, if we have valid data return the appropriate json
-    doge_data = get_doge(doge_id)
+    doge_data = get_bitdoge(doge_id)
     if doge_data :
         # TODO: update this to extract doge_data into doge_webpage_template
         return jsonify(json_template.doge_webpage_template)
