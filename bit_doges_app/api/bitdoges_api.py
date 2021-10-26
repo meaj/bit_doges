@@ -1,3 +1,4 @@
+import re
 from doge_generation import bitdoges_generation, json_template
 from flask import Flask, request, jsonify
 import coinaddr
@@ -30,18 +31,6 @@ def confirm_doge_addr(doge_addr):
     return found
 
 
-# Uses the contract supplied token id and generation number, and the user supplied doge address to forge a new doge
-def forge_bitdoge(token_id, doge_addr):
-    # TODO: add check to confirm token_id not already in use
-    print("Forging new doge #:" + str(token_id))
-    # Get json data about doge from generation script
-    doge_json = bitdoges_generation.doge_factory(token_id, doge_addr)
-    # TODO: Manage DogeCount by checking contract
-    global DogeCount
-    DogeCount = DogeCount + 1
-    return doge_json
-
-
 def get_bitdoge(token_id):
     # TODO: add logic to check for existence of relevant doge_data folder
     return True
@@ -50,17 +39,22 @@ def get_bitdoge(token_id):
 # Entry point for minting bitdoge
 @app.route("/mint", methods=['POST'])
 def mint_bitdoge():
-    # TODO: Get doge addr from api call
-    doge_addr = "DEBA4cGspNuT6paX4kzSrNduttLcMrau5Z"
+    # Get doge addr from api call
     doge_id = int(request.args['id'])
+    doge_addr = request.args['addr']
+    # confirm address is valid and mint new doge
     if confirm_doge_addr(doge_addr):
-        # TODO: get json resulting from minting doge
-        doge_data = forge_bitdoge(doge_id, doge_addr)
-        status = "Minted BitDoge with address: " + str(doge_addr)
+        # TODO ensure duplicate doges are not created with get_bitdoge
+        print("Forging new doge #:" + str(doge_id))
+        # Get json data about doge from generation script
+        doge_json = bitdoges_generation.doge_factory(doge_id, doge_addr)
+        # TODO: Manage DogeCount by checking and updating contract
+        global DogeCount
+        DogeCount = DogeCount + 1
     else:
-        status = "Invalid Address, no BitDoge minted"
+        doge_json = "<p> Invalid Address, no BitDoge minted </p>"
     # TODO: return json for the resulting doge or a message asking to try again
-    return jsonify(doge_data)
+    return jsonify(doge_json)
 
 
 # Entry point for viewing bitdoge
