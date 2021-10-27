@@ -55,7 +55,8 @@ def get_doge_data(doge_id):
     doge_data_in = dirname + "/doge_data/" + str(doge_id)
     if os.path.isdir(doge_data_in):
         doge_gif = [file for file in os.listdir(doge_data_in) if file.endswith('.gif')]
-        df = open([file for file in os.listdir(doge_data_in) if file.endswith('.json')], 'r')
+        json_file = [file for file in os.listdir(doge_data_in) if file.endswith('.json')]
+        df = open(json_file, 'r')
         doge_json = json.load(df)
         df.close()
         if doge_gif & doge_json:
