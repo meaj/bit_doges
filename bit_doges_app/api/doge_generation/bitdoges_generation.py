@@ -59,7 +59,7 @@ def get_doge_data(doge_id):
         df = open(doge_data_in + "/" + json_file, 'r')
         doge_json = json.load(df)
         df.close()
-        if doge_gif & doge_json:
+        if doge_gif and doge_json:
             return doge_json, str(doge_data_in + "/" + doge_gif)
 
     return False, False
