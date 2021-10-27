@@ -13,7 +13,7 @@ web3 = Web3(Web3.HTTPProvider(infura_url))
 contract_abi = ""
 contract_addr = ""
 
-DogeCount = 12
+DogeCount = 1
 
 app = Flask(__name__)
 
@@ -32,8 +32,9 @@ def confirm_doge_addr(doge_addr):
 
 
 def get_bitdoge(token_id):
-    # TODO: add logic to check for existence of relevant doge_data folder
-    return True
+    json, gif_path = bitdoges_generation.get_doge_data(token_id)
+    # TODO: assemble doge_webpage_template data from bitdoge_json and bitdoge_gif
+    return json
 
 
 # Entry point for minting bitdoge
@@ -52,7 +53,7 @@ def mint_bitdoge():
         global DogeCount
         DogeCount = DogeCount + 1
     else:
-        doge_json = "<p> Invalid Address, no BitDoge minted </p>"
+        return "<p> Invalid Address, no BitDoge minted </p>"
     # TODO: return json for the resulting doge or a message asking to try again
     return jsonify(doge_json)
 
@@ -70,5 +71,5 @@ def view_bitdoge():
         return "<p> 404 BitDoge not found </p>"
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=80)
+    app.run(host="0.0.0.0", port=3000)
 

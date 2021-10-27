@@ -51,9 +51,22 @@ used_colors = []
 eye_pool = color_array.copy()
 
 
+def get_doge_data(doge_id):
+    doge_data_in = dirname + "/doge_data/" + str(doge_id)
+    if os.path.isdir(doge_data_in):
+        doge_gif = [file for file in os.listdir(doge_data_in) if file.endswith('.gif')]
+        df = open([file for file in os.listdir(doge_data_in) if file.endswith('.json')], 'r')
+        doge_json = json.load(df)
+        df.close()
+        if doge_gif & doge_json:
+            return doge_json, str(doge_data_in + "/" + doge_gif)
+
+    return False, False
+
+
 def generate_metadata (doge_id, doge_type, name, eye_type, snoz_type, foil_type, wow_value, bd_time, addr, b64_doge):
     doge_metadata = json_template.doge_metadata_template
-    metadata_out = dirname + "/doge_data/" + str(doge_id) + "_" + name + "/" + name + '.json'
+    metadata_out = dirname + "/doge_data/" + str(doge_id) + "/" + name + '.json'
     print("Generating metadata for funny doge picture")
     doge_metadata["name"] = name
     doge_metadata["external_url"] = "https://bitdoges.com/bitdoge/" + str(doge_id)
@@ -77,7 +90,7 @@ def generate_metadata (doge_id, doge_type, name, eye_type, snoz_type, foil_type,
 def generate_bitdoge(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
     print("generating funny doge picture")
     convert.convert_frames(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name)
-    with open(dirname + "/doge_data/" + str(doge_id) + "_" + name + "/" + name + ".svg", "rb") as svg_bytes:
+    with open(dirname + "/doge_data/" + str(doge_id) + "/" + name + ".svg", "rb") as svg_bytes:
         base64_svg = base64.b64encode(svg_bytes.read())
     return base64_svg
 
