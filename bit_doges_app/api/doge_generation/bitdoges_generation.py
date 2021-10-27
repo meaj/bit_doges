@@ -54,8 +54,8 @@ eye_pool = color_array.copy()
 def get_doge_data(doge_id):
     doge_data_in = dirname + "/doge_data/" + str(doge_id)
     if os.path.isdir(doge_data_in):
-        doge_gif = [file for file in os.listdir(doge_data_in) if file.endswith('.gif')]
-        json_file = [file for file in os.listdir(doge_data_in) if file.endswith('.json')]
+        doge_gif = [file for file in os.listdir(doge_data_in) if file.endswith('.gif')][0]
+        json_file = [file for file in os.listdir(doge_data_in) if file.endswith('.json')][0]
         df = open(json_file, 'r')
         doge_json = json.load(df)
         df.close()
