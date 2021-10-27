@@ -37,7 +37,7 @@ def swap_color_svg(fileContent, rgb_color1, rgb_color2):
 def convert_frames(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
     # create output dir
     home_dir = os.path.dirname(__file__)
-    out_dir = home_dir + "/doge_data/" + str(doge_id) + "_" + name
+    out_dir = home_dir + "/doge_data/" + str(doge_id) 
     if not os.path.exists(out_dir):
         os.mkdir(out_dir)
         
