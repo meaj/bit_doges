@@ -66,7 +66,8 @@ def view_bitdoge():
     doge_data = get_bitdoge(doge_id)
     if doge_data :
         # TODO: update this to extract doge_data into doge_webpage_template
-        return jsonify(json_template.doge_webpage_template)
+        json_template.doge_webpage_template
+        return jsonify(doge_data)
     else:
         return "<p> 404 BitDoge not found </p>"
 
