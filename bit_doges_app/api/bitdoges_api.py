@@ -32,9 +32,15 @@ def confirm_doge_addr(doge_addr):
 
 
 def get_bitdoge(token_id):
+    page_json = False
     json, gif_path = bitdoges_generation.get_doge_data(token_id)
-    # TODO: assemble doge_webpage_template data from bitdoge_json and bitdoge_gif
-    return json
+    if json:
+        #assemble doge_webpage_template data from bitdoge_json and bitdoge_gif
+        page_json = json_template.doge_webpage_template
+        page_json["token_id"] = token_id
+        page_json["bitdoge_gif"] = gif_path
+        page_json["bitdoge_metadata"] = json
+    return page_json
 
 
 # JSON errorhandler
@@ -52,6 +58,8 @@ def mint_bitdoge():
     # confirm address is valid and mint new doge
     if confirm_doge_addr(doge_addr):
         # TODO ensure duplicate doges are not created with get_bitdoge
+        if get_bitdoge(doge_id):
+            return make_response(jsonify({'error': 'Doge Exists'}), 400)
         print("Forging new doge #:" + str(doge_id))
         # Get json data about doge from generation script
         doge_json = bitdoges_generation.doge_factory(doge_id, doge_addr)
@@ -71,8 +79,6 @@ def view_bitdoge():
     # check if doge exists, if we have valid data return the appropriate json
     doge_data = get_bitdoge(doge_id)
     if doge_data :
-        # TODO: update this to extract doge_data into doge_webpage_template
-        json_template.doge_webpage_template
         return jsonify(doge_data), 200
     else:
         abort(404)
