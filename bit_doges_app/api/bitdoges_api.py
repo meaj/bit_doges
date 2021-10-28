@@ -1,6 +1,6 @@
 import re
 from doge_generation import bitdoges_generation, json_template
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response, abort
 import coinaddr
 from web3 import Web3
 
@@ -37,6 +37,12 @@ def get_bitdoge(token_id):
     return json
 
 
+# JSON errorhandler
+@app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not Found'}), 404)
+
+
 # Entry point for minting bitdoge
 @app.route("/mint", methods=['POST'])
 def mint_bitdoge():
@@ -53,7 +59,7 @@ def mint_bitdoge():
         global DogeCount
         DogeCount = DogeCount + 1
     else:
-        return "<p> Invalid Address, no BitDoge minted </p>"
+        return make_response(jsonify({'forbidden': 'Invalid Doge Address'}), 403)
     # TODO: return json for the resulting doge or a message asking to try again
     return jsonify(doge_json)
 
@@ -69,7 +75,7 @@ def view_bitdoge():
         json_template.doge_webpage_template
         return jsonify(doge_data)
     else:
-        return "<p> 404 BitDoge not found </p>"
+        abort(404)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=3000)
