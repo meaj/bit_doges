@@ -59,9 +59,9 @@ def mint_bitdoge():
         global DogeCount
         DogeCount = DogeCount + 1
     else:
-        return make_response(jsonify({'forbidden': 'Invalid Doge Address'}), 403)
+        return make_response(jsonify({'error': 'Invalid Doge Address'}), 400)
     # TODO: return json for the resulting doge or a message asking to try again
-    return jsonify(doge_json)
+    return jsonify(doge_json), 201
 
 
 # Entry point for viewing bitdoge
@@ -73,7 +73,7 @@ def view_bitdoge():
     if doge_data :
         # TODO: update this to extract doge_data into doge_webpage_template
         json_template.doge_webpage_template
-        return jsonify(doge_data)
+        return jsonify(doge_data), 200
     else:
         abort(404)
 
