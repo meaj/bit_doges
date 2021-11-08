@@ -33,5 +33,6 @@ bitdoge_examples/
 /bit_doges_app/api/doge_generation/skeletons/
 /bit_doges_app/api/.venv/
 /bit_doges_app/api/.idea/
+/bit_doges_app/api/.flaskenv
 
 *.pyc

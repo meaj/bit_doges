@@ -57,7 +57,7 @@ def mint_bitdoge():
     doge_addr = request.args['addr']
     # confirm address is valid and mint new doge
     if confirm_doge_addr(doge_addr):
-        # TODO ensure duplicate doges are not created with get_bitdoge
+        # ensure duplicate doges are not created with get_bitdoge
         if get_bitdoge(doge_id):
             return make_response(jsonify({'error': 'Doge Exists'}), 400)
         print("Forging new doge #:" + str(doge_id))
@@ -85,4 +85,3 @@ def view_bitdoge():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=3000)
-
