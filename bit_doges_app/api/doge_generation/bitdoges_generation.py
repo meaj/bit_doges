@@ -97,7 +97,7 @@ def generate_bitdoge(doge_type, doge_id, hd, th, ew, ep, nz, bg, ol, name):
 
 
 def generate_data(x, name, addr):
-    s = 641616287
+    s = hash(addr)
     seed(x+s)
     wow = 0
 
@@ -127,12 +127,13 @@ def generate_data(x, name, addr):
     used_colors.append(color_choice)
 
     # eye color
-    # if random number between 1-1000 is 50 or less - gilded eyes
+    # if random number between 1000 and 333 eyes are normal
     if d > 333:
         # normal eyes are always the same color
         eye_white = (240, 248, 255)
         eye_pupil = (1, 1, 1)
         eyes = "normal"
+    # if random number between 333 and 84, eyes are silver
     elif 333 >= d > 84:
         # silver eyes are always the same color
         eye_white = (240, 248, 255)
